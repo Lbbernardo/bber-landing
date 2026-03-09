@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Guía Financiera del Latino en EE.UU. | BBER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --purple: #7C3AED;
+      --lavender: #A78BFA;
+      --yellow: #FACC15;
+      --dark: #0F0F0F;
+      --muted: #6B7280;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: #f9f9f9;
+      color: #1a1a1a;
+      line-height: 1.7;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Print button ── */
+    .print-bar {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      display: flex;
+      gap: 10px;
+    }
+    .print-bar button, .print-bar a {
+      background: #7C3AED;
+      color: #fff;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 30px rgba(124,58,237,0.4);
+      transition: transform 0.2s;
+    }
+    .print-bar button:hover, .print-bar a:hover { transform: translateY(-2px); }
+
+    /* ── Document pages ── */
+    .page {
+      max-width: 800px;
+      margin: 0 auto 32px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    /* ── Cover ── */
+    .cover {
+      background: linear-gradient(145deg, #0d0020 0%, #1a0a3a 50%, #0d0020 100%);
+      min-height: 780px;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='%23ffffff08' stroke-width='1'/%3E%3C/svg%3E");
+    }
+    .cover-top-bar {
+      height: 5px;
+      background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 50%, #FACC15 100%);
+    }
+    .cover-inner {
+      position: relative;
+      z-index: 1;
+      padding: 60px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cover-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 80px;
+    }
+    .cover-logo-icon {
+      width: 40px; height: 40px;
+      background: #7C3AED;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 18px; color: #fff;
+    }
+    .cover-logo-text { font-weight: 900; font-size: 22px; color: #fff; letter-spacing: -0.5px; }
+
+    .cover-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(250,204,21,0.1);
+      border: 1px solid rgba(250,204,21,0.3);
+      color: #FACC15;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+      width: fit-content;
+    }
+    .cover h1 {
+      font-size: 52px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .cover h1 span { color: #FACC15; }
+    .cover-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    .cover-stats {
+      display: flex;
+      gap: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 32px;
+      margin-top: auto;
+    }
+    .cover-stat-num { font-size: 28px; font-weight: 900; color: #A78BFA; }
+    .cover-stat-label { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+    .cover-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    /* ── Page content ── */
+    .page-inner { padding: 56px 64px; }
+
+    /* Chapter header */
+    .chapter-header {
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 28px;
+      margin-bottom: 36px;
+    }
+    .chapter-num {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #7C3AED;
+      margin-bottom: 8px;
+    }
+    .chapter-header h2 {
+      font-size: 32px;
+      font-weight: 900;
+      color: #0d0020;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+    .chapter-intro {
+      font-size: 16px;
+      color: #4B5563;
+      line-height: 1.8;
+      margin-bottom: 32px;
+      border-left: 3px solid #7C3AED;
+      padding-left: 20px;
+    }
+
+    /* Section inside chapter */
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0d0020;
+      margin: 32px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #f0f0f0;
+      margin-left: 12px;
+    }
+
+    p { margin-bottom: 14px; color: #374151; }
+
+    /* Callout boxes */
+    .box {
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .box-purple {
+      background: rgba(124,58,237,0.05);
+      border: 1px solid rgba(124,58,237,0.2);
+    }
+    .box-yellow {
+      background: rgba(250,204,21,0.06);
+      border: 1px solid rgba(250,204,21,0.3);
+    }
+    .box-green {
+      background: rgba(34,197,94,0.05);
+      border: 1px solid rgba(34,197,94,0.2);
+    }
+    .box-red {
+      background: rgba(239,68,68,0.05);
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+    .box-title {
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .box-purple .box-title { color: #7C3AED; }
+    .box-yellow .box-title { color: #B45309; }
+    .box-green .box-title { color: #16A34A; }
+    .box-red .box-title { color: #DC2626; }
+
+    /* Lists */
+    ul, ol { padding-left: 0; list-style: none; margin-bottom: 14px; }
+    ul li, ol li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 0;
+      color: #374151;
+      font-size: 14px;
+    }
+    ul li::before {
+      content: '→';
+      color: #7C3AED;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    ol { counter-reset: item; }
+    ol li { counter-increment: item; }
+    ol li::before {
+      content: counter(item);
+      background: #7C3AED;
+      color: #fff;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    th {
+      background: #7C3AED;
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; color: #374151; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    /* Takeaways */
+    .takeaways {
+      background: linear-gradient(135deg, #0d0020, #1a0a3a);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-top: 32px;
+    }
+    .takeaways-title {
+      color: #FACC15;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+    .takeaways ul li { color: rgba(255,255,255,0.8); }
+    .takeaways ul li::before { color: #FACC15; }
+
+    /* Exercise */
+    .exercise {
+      background: #fff9e6;
+      border: 2px solid #FACC15;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .exercise-title {
+      font-weight: 900;
+      color: #92400E;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .exercise p { color: #92400E; }
+
+    /* TOC */
+    .toc-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .toc-num {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #7C3AED, #A78BFA);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; color: #fff;
+      flex-shrink: 0;
+    }
+    .toc-title { font-weight: 700; color: #0d0020; font-size: 15px; }
+    .toc-sub { font-size: 12px; color: #9CA3AF; margin-top: 2px; }
+
+    /* Final CTA page */
+    .cta-page {
+      background: linear-gradient(145deg, #0d0020 0%, #1a0a3a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-inner { position: relative; z-index: 1; padding: 60px; }
+    .cta-page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='%23ffffff05' stroke-width='1'/%3E%3C/svg%3E");
+    }
+
+    /* Intro page */
+    .intro-quote {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0d0020;
+      line-height: 1.5;
+      border-left: 4px solid #FACC15;
+      padding: 16px 24px;
+      background: rgba(250,204,21,0.05);
+      border-radius: 0 12px 12px 0;
+      margin: 24px 0;
+    }
+
+    /* Highlight text */
+    .highlight { color: #7C3AED; font-weight: 700; }
+    .highlight-yellow { color: #B45309; font-weight: 700; }
+    strong { color: #0d0020; }
+
+    /* Formula */
+    .formula {
+      background: #0d0020;
+      color: #A78BFA;
+      padding: 16px 24px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      text-align: center;
+      margin: 16px 0;
+      letter-spacing: 0.5px;
+    }
+
+    /* Comparison grid */
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+    .compare-card { border-radius: 10px; padding: 18px; }
+    .compare-bad { background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); }
+    .compare-good { background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.2); }
+    .compare-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+    .compare-bad .compare-label { color: #DC2626; }
+    .compare-good .compare-label { color: #16A34A; }
+    .compare-card ul li::before { color: inherit; }
+    .compare-bad ul li::before { color: #DC2626; content: '✕'; }
+    .compare-good ul li::before { color: #16A34A; content: '✓'; }
+
+    /* Page separator */
+    .page-sep {
+      text-align: center;
+      padding: 16px;
+      color: #d1d5db;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .print-bar { display: none !important; }
+      .page {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        page-break-after: always;
+        break-after: page;
+      }
+      .page:last-child { page-break-after: avoid; break-after: avoid; }
+      .cover { min-height: 100vh; }
+      .page-sep { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .page-inner { padding: 32px 24px; }
+      .cover-inner { padding: 36px 28px; }
+      .cover h1 { font-size: 34px; }
+      .cover-stats { flex-wrap: wrap; gap: 20px; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .cta-inner { padding: 40px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Print bar ── -->
+<div class="print-bar">
+  <button onclick="window.print()">
+    ⬇ Descargar PDF
+  </button>
+  <a href="/">← Regresar</a>
+</div>
+
+<!-- ══════════════════════════════════════
+     PORTADA
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-top-bar"></div>
+    <!-- Glows -->
+    <div class="cover-glow" style="width:400px;height:400px;background:rgba(124,58,237,0.25);top:-100px;right:-100px;"></div>
+    <div class="cover-glow" style="width:300px;height:300px;background:rgba(250,204,21,0.1);bottom:-50px;left:-50px;"></div>
+
+    <div class="cover-inner">
+      <div class="cover-logo">
+        <div class="cover-logo-icon">B</div>
+        <span class="cover-logo-text">BBER</span>
+      </div>
+
+      <div>
+        <div class="cover-tag">
+          <span style="width:6px;height:6px;background:#FACC15;border-radius:50%;display:inline-block;"></span>
+          Educación Financiera · Para Latinos en EE.UU.
+        </div>
+
+        <h1>La Guía Financiera<br />del Latino en <span>EE.UU.</span></h1>
+
+        <p class="cover-sub">
+          Todo lo que el sistema nunca te enseñó sobre el dinero — en un solo libro, en español, diseñado para nuestra realidad.
+        </p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <div style="background:rgba(250,204,21,0.1);border:1px solid rgba(250,204,21,0.3);color:#FACC15;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:700;">
+            10 Módulos Completos
+          </div>
+          <div style="background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);color:#A78BFA;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:700;">
+            100% en Español
+          </div>
+          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);padding:8px 18px;border-radius:100px;font-size:13px;font-weight:700;">
+            Gratis para ti
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-stats">
+        <div>
+          <div class="cover-stat-num">10</div>
+          <div class="cover-stat-label">Módulos completos</div>
+        </div>
+        <div>
+          <div class="cover-stat-num">60+</div>
+          <div class="cover-stat-label">Páginas de contenido</div>
+        </div>
+        <div>
+          <div class="cover-stat-num">2,400+</div>
+          <div class="cover-stat-label">Familias ya transformadas</div>
+        </div>
+        <div>
+          <div class="cover-stat-num">$0</div>
+          <div class="cover-stat-label">Costo total</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     TABLA DE CONTENIDO
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Índice</div>
+      <h2>¿Qué encontrarás aquí?</h2>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-num" style="background:linear-gradient(135deg,#6366F1,#A78BFA);">✦</div>
+      <div><div class="toc-title">Introducción: Por qué este libro cambió mi vida</div><div class="toc-sub">El problema real de los latinos con el dinero en EE.UU.</div></div>
+    </div>
+
+    <div style="height:8px;"></div>
+
+    <div class="toc-item"><div class="toc-num">01</div><div><div class="toc-title">La Mentalidad del Dinero</div><div class="toc-sub">Rompe las creencias que te frenan</div></div></div>
+    <div class="toc-item"><div class="toc-num">02</div><div><div class="toc-title">Conoce Tu Situación Financiera Real</div><div class="toc-sub">Tu fotografía financiera actual</div></div></div>
+    <div class="toc-item"><div class="toc-num">03</div><div><div class="toc-title">El Presupuesto que Sí Funciona</div><div class="toc-sub">El método 50/30/20 adaptado para latinos</div></div></div>
+    <div class="toc-item"><div class="toc-num">04</div><div><div class="toc-title">El Fondo de Emergencia</div><div class="toc-sub">Tu colchón financiero, tu tranquilidad</div></div></div>
+    <div class="toc-item"><div class="toc-num">05</div><div><div class="toc-title">Conquista tus Deudas</div><div class="toc-sub">Avalanche vs Snowball: cuál usar</div></div></div>
+    <div class="toc-item"><div class="toc-num">06</div><div><div class="toc-title">El Crédito en EE.UU.</div><div class="toc-sub">De 500 a 750+ en 12 meses</div></div></div>
+    <div class="toc-item"><div class="toc-num">07</div><div><div class="toc-title">Inversiones Para Principiantes</div><div class="toc-sub">Cómo empezar con $50 al mes</div></div></div>
+    <div class="toc-item"><div class="toc-num">08</div><div><div class="toc-title">Retiro Sin Depender de Nadie</div><div class="toc-sub">401(k), IRA y Roth IRA en español</div></div></div>
+    <div class="toc-item"><div class="toc-num">09</div><div><div class="toc-title">Tu Primera Casa en EE.UU.</div><div class="toc-sub">El proceso hipotecario paso a paso</div></div></div>
+    <div class="toc-item"><div class="toc-num">10</div><div><div class="toc-title">Legado y Libertad Financiera</div><div class="toc-sub">Construye riqueza para las próximas generaciones</div></div></div>
+
+    <div style="height:16px;"></div>
+
+    <div class="toc-item">
+      <div class="toc-num" style="background:linear-gradient(135deg,#FACC15,#F59E0B);color:#000;">★</div>
+      <div><div class="toc-title" style="color:#7C3AED;">Asesoría Personalizada Gratuita (Valor $497)</div><div class="toc-sub">Tu siguiente paso con un Licenciado Financiero</div></div>
+    </div>
+
+    <div class="box box-purple" style="margin-top:28px;">
+      <div class="box-title">💡 Cómo usar esta guía</div>
+      <p>Lee un módulo por semana. Al final de cada uno encontrarás un ejercicio práctico. Complétalo antes de pasar al siguiente. La información sin acción no cambia nada — la acción consistente lo cambia todo.</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     INTRODUCCIÓN
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Introducción</div>
+      <h2>Por qué este libro puede cambiar tu vida</h2>
+    </div>
+
+    <div class="intro-quote">
+      "El problema no es que no ganes suficiente. El problema es que nadie te enseñó qué hacer con lo que ganas."
+    </div>
+
+    <p>Si eres latino viviendo en los Estados Unidos, probablemente creciste en un hogar donde el dinero era un tema incómodo. Tal vez escuchaste frases como <strong>"el dinero es para los ricos"</strong>, <strong>"con tal de que no nos falte el pan"</strong>, o simplemente nunca se habló de finanzas en casa.</p>
+
+    <p>No es tu culpa. Nuestros padres nos enseñaron lo que ellos sabían, y ellos aprendieron de sus padres. Pero el ciclo puede romperse, y puede romperse ahora, con ti.</p>
+
+    <div class="section-title">La realidad que nadie nos dice</div>
+
+    <p>Según estudios recientes, <strong>más del 60% de los latinos en EE.UU. no tienen ahorros de emergencia</strong>. El 45% vive al día. Y solo el 22% tiene algún tipo de inversión para el retiro.</p>
+
+    <p>Pero también hay otra verdad: <strong>los latinos son el grupo de más rápido crecimiento económico en los Estados Unidos</strong>. Nuestro poder adquisitivo supera los $2.8 billones de dólares anuales. El problema no es la capacidad — es la falta de educación financiera.</p>
+
+    <div class="box box-yellow">
+      <div class="box-title">📊 El costo de la ignorancia financiera</div>
+      <p>Una familia que paga solo los mínimos en deudas de tarjeta de crédito puede terminar pagando hasta el <strong>300% del valor original</strong> en intereses. Una familia que aprende a invertir $200 al mes durante 30 años puede acumular más de <strong>$400,000</strong> — incluso con un salario modesto.</p>
+    </div>
+
+    <div class="section-title">Lo que este libro hará por ti</div>
+
+    <p>Este no es un libro de teoría. Cada módulo contiene <strong>estrategias concretas que puedes aplicar esta semana</strong>, sin importar cuánto ganes hoy, sin importar cuántas deudas tengas, y sin importar si nunca has pensado en invertir.</p>
+
+    <p>Al terminar esta guía tendrás:</p>
+
+    <ul>
+      <li>Un presupuesto real que funciona para tu familia</li>
+      <li>Un plan para eliminar tus deudas</li>
+      <li>Tu primer fondo de emergencia en construcción</li>
+      <li>Crédito que mejora mes a mes</li>
+      <li>Tu primera inversión activa</li>
+      <li>Un camino claro hacia la libertad financiera</li>
+    </ul>
+
+    <div class="takeaways">
+      <div class="takeaways-title">✦ Antes de empezar</div>
+      <ul>
+        <li>Comprométete a leer un módulo por semana</li>
+        <li>Haz los ejercicios — no los saltes</li>
+        <li>Comparte esta guía con alguien que ames</li>
+        <li>Recuerda: el mejor momento fue ayer. El segundo mejor es ahora.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     MÓDULO 01
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Módulo 01</div>
+      <h2>La Mentalidad del Dinero</h2>
+    </div>
+
+    <p class="chapter-intro">Antes de cambiar tus finanzas, debes cambiar cómo piensas sobre el dinero. Las creencias que tienes hoy sobre el dinero determinan las decisiones que tomas mañana — y esas decisiones determinan tu futuro económico.</p>
+
+    <div class="section-title">Las creencias que heredamos</div>
+
+    <p>Piensa por un momento: ¿qué te enseñaron sobre el dinero cuando eras niño? La mayoría de nosotros escuchamos frases como estas:</p>
+
+    <div class="compare-grid">
+      <div class="compare-card compare-bad">
+        <div class="compare-label">❌ Creencias limitantes</div>
+        <ul>
+          <li>"El dinero es la raíz de todo mal"</li>
+          <li>"Los ricos son corruptos o avariciosos"</li>
+          <li>"Hablar de dinero es de mal gusto"</li>
+          <li>"Nunca vamos a salir de pobres"</li>
+          <li>"Con tal de que no nos falte"</li>
+        </ul>
+      </div>
+      <div class="compare-card compare-good">
+        <div class="compare-label">✅ Creencias que generan riqueza</div>
+        <ul>
+          <li>"El dinero es una herramienta neutral"</li>
+          <li>"Merezco prosperar y crecer"</li>
+          <li>"El dinero bien usado sirve al bien"</li>
+          <li>"Puedo aprender a manejar el dinero"</li>
+          <li>"Mi familia merece abundancia"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-title">Mentalidad de escasez vs. mentalidad de abundancia</div>
+
+    <p>La <strong>mentalidad de escasez</strong> te hace creer que el dinero es limitado, que si alguien gana más es porque te quitó algo a ti, y que no hay suficiente para todos. Esta mentalidad paraliza.</p>
+
+    <p>La <strong>mentalidad de abundancia</strong> reconoce que el dinero es un recurso que puede crecer, que el éxito de otros no te perjudica, y que con las decisiones correctas cualquiera puede prosperar. Esta mentalidad libera.</p>
+
+    <div class="box box-purple">
+      <div class="box-title">🧠 El experimento mental del millón</div>
+      <p>Imagina que alguien te da $1,000,000 hoy. ¿Qué harías? Si tu primera reacción fue <em>"lo gastaría en..."</em> en lugar de <em>"lo invertiría en..."</em> — eso te dice algo sobre tu relación actual con el dinero. No es un juicio, es información valiosa.</p>
+    </div>
+
+    <div class="section-title">Por qué tu relación con el dinero importa</div>
+
+    <p>Las personas que crecieron en hogares donde el dinero era fuente de estrés, peleas y ansiedad, frecuentemente desarrollan una relación tóxica con las finanzas. Pueden gastar compulsivamente para sentirse mejor (retail therapy), evitar revisar su cuenta bancaria porque les da miedo, o sabotear su propio éxito cuando empiezan a progresar.</p>
+
+    <p>Reconocer este patrón es el primer paso para romperlo.</p>
+
+    <div class="exercise">
+      <div class="exercise-title">📝 Ejercicio del Módulo 1</div>
+      <p><strong>Escribe 5 creencias que tienes sobre el dinero</strong> — las primeras 5 que vengan a tu mente. Luego pregúntate: ¿de dónde vino esta creencia? ¿Es realmente mía o la heredé? ¿Me sirve o me frena? Por cada creencia limitante, escribe una creencia alternativa que te empodere.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">🌟 Puntos clave del Módulo 1</div>
+      <ul>
+        <li>Tus creencias sobre el dinero fueron programadas — y pueden reprogramarse</li>
+        <li>La mentalidad de abundancia no significa ignorar la realidad, significa expandir lo que crees posible</li>
+        <li>El primer paso para la libertad financiera es mental, no económico</li>
+        <li>Merecer prosperar no es egoísmo — es responsabilidad con tu familia</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     MÓDULO 02
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Módulo 02</div>
+      <h2>Conoce Tu Situación Financiera Real</h2>
+    </div>
+
+    <p class="chapter-intro">No puedes mejorar lo que no mides. Antes de cualquier plan financiero, necesitas una fotografía clara y honesta de dónde estás hoy: cuánto tienes, cuánto debes, cuánto ganas y cuánto gastas.</p>
+
+    <div class="section-title">Tu Patrimonio Neto (Net Worth)</div>
+
+    <p>El <strong>Patrimonio Neto</strong> es el número más importante de tus finanzas personales. Es la diferencia entre todo lo que tienes (activos) y todo lo que debes (pasivos).</p>
+
+    <div class="formula">Patrimonio Neto = Activos − Pasivos</div>
+
+    <table>
+      <tr><th>ACTIVOS (lo que tienes)</th><th>Valor</th><th>PASIVOS (lo que debes)</th><th>Valor</th></tr>
+      <tr><td>Dinero en cuentas</td><td>$______</td><td>Deuda de tarjetas</td><td>$______</td></tr>
+      <tr><td>Valor de tu auto</td><td>$______</td><td>Préstamo del auto</td><td>$______</td></tr>
+      <tr><td>Valor de propiedades</td><td>$______</td><td>Hipoteca</td><td>$______</td></tr>
+      <tr><td>Cuentas de retiro</td><td>$______</td><td>Préstamos estudiantiles</td><td>$______</td></tr>
+      <tr><td>Inversiones</td><td>$______</td><td>Otros préstamos</td><td>$______</td></tr>
+      <tr><td><strong>TOTAL ACTIVOS</strong></td><td><strong>$______</strong></td><td><strong>TOTAL PASIVOS</strong></td><td><strong>$______</strong></td></tr>
+    </table>
+
+    <div class="box box-yellow">
+      <div class="box-title">💡 Interpretando tu patrimonio neto</div>
+      <p>Si tu número es <strong>negativo</strong> — tranquilo. Muchos empiezan así, especialmente con deudas estudiantiles o del auto. Lo importante es la tendencia: ¿está creciendo mes a mes? Ese es el objetivo.</p>
+    </div>
+
+    <div class="section-title">Tu Flujo de Caja Mensual</div>
+
+    <p>El flujo de caja es simplemente: ¿cuánto dinero entra y cuánto sale cada mes? Parece simple, pero la mayoría de personas no lo sabe con exactitud.</p>
+
+    <table>
+      <tr><th>INGRESOS MENSUALES</th><th>GASTOS MENSUALES</th></tr>
+      <tr><td>Salario neto (después de impuestos): $______</td><td>Renta/Hipoteca: $______</td></tr>
+      <tr><td>Ingresos extras: $______</td><td>Servicios (luz, gas, internet): $______</td></tr>
+      <tr><td>Otros ingresos: $______</td><td>Comida y supermercado: $______</td></tr>
+      <tr><td></td><td>Transporte: $______</td></tr>
+      <tr><td></td><td>Seguros: $______</td></tr>
+      <tr><td></td><td>Entretenimiento: $______</td></tr>
+      <tr><td></td><td>Deudas (mínimos): $______</td></tr>
+      <tr><td><strong>TOTAL: $______</strong></td><td><strong>TOTAL: $______</strong></td></tr>
+    </table>
+
+    <div class="formula">Flujo de Caja = Total Ingresos − Total Gastos</div>
+
+    <div class="section-title">Los 4 errores financieros más comunes</div>
+
+    <ul>
+      <li><strong>Gastar sin registrar:</strong> Si no sabes a dónde va tu dinero, te lo "comen" los gastos pequeños — café, suscripciones, comida rápida.</li>
+      <li><strong>Pagar solo mínimos en deudas:</strong> Con una deuda de $5,000 al 24% APR pagando solo el mínimo, podrías tardar 15+ años en pagarla y pagar $7,000+ en intereses.</li>
+      <li><strong>No tener fondo de emergencia:</strong> Un imprevisto médico o la pérdida del trabajo puede destruir años de esfuerzo en semanas.</li>
+      <li><strong>No aprovechar el match del empleador:</strong> Si tu empresa te ofrece un match en el 401(k) y no lo usas, estás rechazando dinero gratis.</li>
+    </ul>
+
+    <div class="exercise">
+      <div class="exercise-title">📝 Ejercicio del Módulo 2</div>
+      <p>Esta semana, descarga los estados de cuenta de tus últimos 3 meses (banco y tarjetas) y categoriza cada gasto. Te sorprenderá cuánto se va en cosas que no recuerdas haber comprado. <strong>Calcula tu patrimonio neto actual</strong> y escríbelo. Ese número es tu punto de partida — no un juicio.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">🌟 Puntos clave del Módulo 2</div>
+      <ul>
+        <li>No puedes mejorar lo que no mides — empieza por conocer tus números</li>
+        <li>El patrimonio neto negativo no es una condena, es un punto de partida</li>
+        <li>Registrar gastos durante 30 días transforma completamente tu relación con el dinero</li>
+        <li>La información sin vergüenza ni juicio es la base de cualquier cambio real</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     MÓDULO 03
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Módulo 03</div>
+      <h2>El Presupuesto que Sí Funciona</h2>
+    </div>
+
+    <p class="chapter-intro">La mayoría de las personas ha intentado hacer un presupuesto y ha fallado. La razón no es falta de disciplina — es que usaron el método equivocado. Un buen presupuesto no te restringe, te da control y libertad.</p>
+
+    <div class="section-title">El Método 50/30/20</div>
+
+    <p>Este es el método más efectivo y sostenible para la mayoría de familias latinas en EE.UU. Divide tus ingresos netos mensuales en tres categorías:</p>
+
+    <table>
+      <tr><th>Categoría</th><th>Porcentaje</th><th>Qué incluye</th><th>Ejemplo ($3,000/mes)</th></tr>
+      <tr><td><strong>Necesidades</strong></td><td style="color:#7C3AED;font-weight:800;">50%</td><td>Renta, comida, transporte, servicios, seguros</td><td>$1,500</td></tr>
+      <tr><td><strong>Deseos</strong></td><td style="color:#7C3AED;font-weight:800;">30%</td><td>Restaurantes, entretenimiento, ropa, viajes</td><td>$900</td></tr>
+      <tr><td><strong>Ahorro/Deudas</strong></td><td style="color:#FACC15;font-weight:800;">20%</td><td>Fondo de emergencia, deudas extra, inversiones</td><td>$600</td></tr>
+    </table>
+
+    <div class="box box-purple">
+      <div class="box-title">🔑 El secreto del 20%</div>
+      <p>El 20% destinado a ahorro y deudas es tu <strong>motor de riqueza</strong>. Si ganas $3,000 al mes y destinas $600 mensuales a salir de deudas e invertir, en 5 años habrás creado una diferencia de $36,000 — más los intereses si lo inviertes.</p>
+    </div>
+
+    <div class="section-title">Adaptando el método a la realidad latina</div>
+
+    <p>Si vives en una ciudad cara como Los Ángeles, Chicago o Nueva York, es posible que tu renta sola consuma más del 50% de tus ingresos. En ese caso, el objetivo no es seguir el porcentaje perfectamente desde el día uno — es <strong>acercarte progresivamente</strong> cada mes.</p>
+
+    <p>Empieza donde estás. Si hoy ahorras 0%, el objetivo de este mes es llegar al 3%. El siguiente mes, al 5%. El progreso constante vence a la perfección ocasional.</p>
+
+    <div class="section-title">Paso a paso para crear tu presupuesto</div>
+
+    <ol>
+      <li>Calcula tu ingreso neto total mensual (después de impuestos y deducciones)</li>
+      <li>Lista todos tus gastos fijos del mes (renta, seguros, préstamos)</li>
+      <li>Estima tus gastos variables (comida, gasolina, entretenimiento)</li>
+      <li>Aplica la regla 50/30/20 como guía de distribución</li>
+      <li>Automatiza tus ahorros — ponlos en automático el día de pago</li>
+      <li>Revisa y ajusta cada semana por el primer mes</li>
+    </ol>
+
+    <div class="section-title">Apps gratuitas para controlar tu presupuesto</div>
+
+    <table>
+      <tr><th>App</th><th>Idioma</th><th>Lo mejor</th></tr>
+      <tr><td><strong>Mint</strong></td><td>Inglés/Español</td><td>Se conecta a tus cuentas automáticamente</td></tr>
+      <tr><td><strong>EveryDollar</strong></td><td>Inglés</td><td>Simple, basado en presupuesto de cero</td></tr>
+      <tr><td><strong>YNAB</strong></td><td>Inglés</td><td>Muy detallado, 34 días gratis</td></tr>
+      <tr><td><strong>Google Sheets</strong></td><td>Español</td><td>Gratis y personalizable</td></tr>
+    </table>
+
+    <div class="exercise">
+      <div class="exercise-title">📝 Ejercicio del Módulo 3</div>
+      <p>Crea tu primer presupuesto mensual usando el método 50/30/20. Toma tu ingreso neto del mes pasado y divídelo en las tres categorías. Compara con lo que <em>realmente</em> gastaste. La diferencia entre el plan y la realidad es exactamente la brecha que este libro te ayudará a cerrar.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">🌟 Puntos clave del Módulo 3</div>
+      <ul>
+        <li>El mejor presupuesto es el que realmente puedes seguir — simple y flexible</li>
+        <li>Automatizar el ahorro elimina la tentación de gastarlo</li>
+        <li>Los gastos pequeños y frecuentes (café, suscripciones) suelen ser los mayores "ladrones" de dinero</li>
+        <li>Un presupuesto no te limita — te da permiso de gastar sin culpa en lo que sí importa</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     MÓDULO 04
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Módulo 04</div>
+      <h2>El Fondo de Emergencia</h2>
+    </div>
+
+    <p class="chapter-intro">El fondo de emergencia es la base de cualquier plan financiero sólido. Sin él, cualquier imprevisto — una reparación del auto, una visita al hospital, perder el trabajo — puede destruir meses o años de esfuerzo en días.</p>
+
+    <div class="section-title">¿Por qué es la prioridad número uno?</div>
+
+    <p>Imagina este escenario: llevas 6 meses pagando extra en tus deudas y de repente el auto se rompe y cuesta $1,200 repararlo. Sin fondo de emergencia, tienes dos opciones: poner la reparación en la tarjeta de crédito (nueva deuda) o no ir a trabajar (perder ingresos). En ambos casos, retrogresas.</p>
+
+    <p>Con un fondo de emergencia de $1,200, simplemente lo pagas y sigues adelante. <strong>El fondo de emergencia es el seguro que protege tu progreso.</strong></p>
+
+    <div class="section-title">¿Cuánto necesitas?</div>
+
+    <p>La regla general es acumular entre <strong>3 y 6 meses</strong> de gastos esenciales. Para determinar cuánto es eso para ti:</p>
+
+    <table>
+      <tr><th>Gasto mensual esencial</th><th>3 meses</th><th>6 meses</th></tr>
+      <tr><td>$1,500</td><td>$4,500</td><td>$9,000</td></tr>
+      <tr><td>$2,000</td><td>$6,000</td><td>$12,000</td></tr>
+      <tr><td>$2,500</td><td>$7,500</td><td>$15,000</td></tr>
+      <tr><td>$3,000</td><td>$9,000</td><td>$18,000</td></tr>
+    </table>
+
+    <p><strong>Si tienes trabajo estable y soltero/a:</strong> 3 meses es suficiente. <strong>Si tienes familia, trabajo por cuenta propia, o trabajo inestable:</strong> apunta a 6 meses.</p>
+
+    <div class="section-title">¿Dónde guardar tu fondo?</div>
+
+    <p>Tu fondo de emergencia NO debe estar en una cuenta de inversión ni en efectivo en casa. Debe estar en una cuenta que sea:</p>
+
+    <ul>
+      <li><strong>Líquida:</strong> Puedas acceder en 1-2 días hábiles</li>
+      <li><strong>Separada:</strong> No mezclada con tu cuenta de gastos diarios</li>
+      <li><strong>Con interés:</strong> Que al menos no pierda valor frente a la inflación</li>
+    </ul>
+
+    <div class="box box-green">
+      <div class="box-title">🏦 Las mejores cuentas para tu fondo de emergencia</div>
+      <p><strong>High-Yield Savings Accounts (HYSA):</strong> Cuentas de ahorro con tasas del 4-5% APY (vs. 0.5% en bancos tradicionales). Las más recomendadas son: <strong>Marcus by Goldman Sachs, Ally Bank, SoFi, y Discover Savings</strong>. Son 100% FDIC insured y puedes abrir una en 10 minutos en línea.</p>
+    </div>
+
+    <div class="section-title">Plan de 90 días para construir tu fondo</div>
+
+    <p>Si tu meta es $3,000, aquí un plan realista:</p>
+
+    <ol>
+      <li><strong>Mes 1:</strong> Abre la cuenta HYSA y deposita $100 o lo que puedas. Cancela 2-3 suscripciones que no usas ($30-80 extra)</li>
+      <li><strong>Mes 2:</strong> Automatiza una transferencia fija el día de pago. Vende cosas en Facebook Marketplace que no necesitas</li>
+      <li><strong>Mes 3:</strong> Destina cualquier ingreso extra (overtime, tax refund, regalo) al fondo</li>
+    </ol>
+
+    <div class="box box-red">
+      <div class="box-title">⚠️ Qué NO es una emergencia</div>
+      <p>Las vacaciones planificadas NO son emergencia. Las compras de ropa NO son emergencia. El Black Friday NO es emergencia. El cumpleaños de alguien NO es emergencia. Solo úsalo para: pérdida de empleo, emergencia médica, reparación urgente del auto o casa, o urgencia familiar real.</p>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">📝 Ejercicio del Módulo 4</div>
+      <p>Esta semana: 1) Calcula cuántos meses de gastos esenciales necesitas cubrir y multiplica por tu gasto mensual para saber tu meta. 2) Abre una cuenta HYSA si no tienes una. 3) Transfiere hoy mismo cualquier cantidad — aunque sean $20 — para comenzar el hábito.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">🌟 Puntos clave del Módulo 4</div>
+      <ul>
+        <li>El fondo de emergencia es el seguro de tu progreso financiero</li>
+        <li>Empieza con $1,000 como primera meta — eso cubre la mayoría de emergencias menores</li>
+        <li>Una HYSA al 4-5% APY es infinitamente mejor que una cuenta corriente al 0.01%</li>
+        <li>Automatizar el ahorro es la clave — lo que no ves, no lo gastas</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     MÓDULO 05
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Módulo 05</div>
+      <h2>Conquista tus Deudas</h2>
+    </div>
+
+    <p class="chapter-intro">Las deudas son el mayor obstáculo entre tú y la libertad financiera. Pero no todas las deudas son iguales, y existe una estrategia probada para eliminarlas más rápido de lo que crees posible.</p>
+
+    <div class="section-title">Deuda buena vs. deuda mala</div>
+
+    <div class="compare-grid">
+      <div class="compare-card compare-good">
+        <div class="compare-label">✅ Deuda "buena"</div>
+        <ul>
+          <li>Hipoteca (activo que aprecia)</li>
+          <li>Préstamo estudiantil (si aumenta ingresos)</li>
+          <li>Préstamo de negocio (si genera retorno)</li>
+          <li>Intereses bajos (&lt;6%)</li>
+        </ul>
+      </div>
+      <div class="compare-card compare-bad">
+        <div class="compare-label">❌ Deuda mala</div>
+        <ul>
+          <li>Tarjetas de crédito (15-29% APR)</li>
+          <li>Buy Now Pay Later (puede ser 0% o 36%)</li>
+          <li>Préstamos de día de pago (300%+ APR)</li>
+          <li>Préstamos de título del auto</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-title">Método Avalanche vs. Método Snowball</div>
+
+    <p>Supongamos que tienes estas deudas:</p>
+
+    <table>
+      <tr><th>Deuda</th><th>Saldo</th><th>APR</th><th>Mínimo</th></tr>
+      <tr><td>Tarjeta A</td><td>$3,200</td><td>24%</td><td>$65</td></tr>
+      <tr><td>Tarjeta B</td><td>$800</td><td>19%</td><td>$25</td></tr>
+      <tr><td>Préstamo Personal</td><td>$5,500</td><td>12%</td><td>$120</td></tr>
+      <tr><td>Auto</td><td>$12,000</td><td>6%</td><td>$240</td></tr>
+    </table>
+
+    <div class="compare-grid">
+      <div class="compare-card compare-good">
+        <div class="compare-label">⚡ Avalanche (más eficiente)</div>
+        <ul>
+          <li>Paga mínimos en todo</li>
+          <li>El extra va a la deuda de mayor APR</li>
+          <li>Ejemplo: enfoca todo en Tarjeta A (24%)</li>
+          <li>Ahorra más dinero en intereses</li>
+          <li>Ideal si tienes disciplina</li>
+        </ul>
+      </div>
+      <div class="compare-card compare-good">
+        <div class="compare-label">❄️ Snowball (más motivador)</div>
+        <ul>
+          <li>Paga mínimos en todo</li>
+          <li>El extra va a la deuda de menor saldo</li>
+          <li>Ejemplo: elimina Tarjeta B ($800) primero</li>
+          <li>Victorias rápidas que dan motivación</li>
+          <li>Ideal si necesitas estímulo constante</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box box-yellow">
+      <div class="box-title">💡 ¿Cuál elegir?</div>
+      <p>El <strong>Avalanche</strong> te ahorra más dinero matemáticamente. El <strong>Snowball</strong> es mejor psicológicamente para muchas personas. La mejor estrategia es la que <em>vas a seguir</em>. Si el avalanche te desanima porque tarda mucho en ver resultados, usa el snowball.</p>
+    </div>
+
+    <div class="section-title">Cómo negociar tasas de interés</div>
+
+    <p>Una llamada de 10 minutos puede ahorrarte cientos de dólares. Si tienes buen historial de pago con una tarjeta, llama y di exactamente esto:</p>
+
+    <div class="box box-purple">
+      <div class="box-title">📞 Guión probado para reducir tu APR</div>
+      <p><em>"Hola, soy cliente hace [X años] y siempre pago a tiempo. He recibido ofertas de otras tarjetas con tasas más bajas y estoy considerando transferir mi saldo. ¿Pueden reducir mi tasa de interés para que me quede con ustedes?"</em></p>
+      <p style="margin-top:8px;">Funciona en el 30-50% de los casos. Si dicen no, llama otro día con un agente diferente.</p>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">📝 Ejercicio del Módulo 5</div>
+      <p>Lista todas tus deudas en una tabla: nombre, saldo actual, tasa de interés y pago mínimo. Decide qué método usarás (Avalanche o Snowball). Luego calcula cuánto dinero extra puedes destinar cada mes a deudas. Aunque sean $50 extra, acelera dramáticamente el proceso.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">🌟 Puntos clave del Módulo 5</div>
+      <ul>
+        <li>Nunca pagues solo el mínimo — siempre agrega aunque sea $20 extra</li>
+        <li>Cancela tarjetas con altas tasas una vez pagadas (pero guarda la más antigua)</li>
+        <li>Una llamada puede reducir tu APR — siempre vale la pena intentarlo</li>
+        <li>Cada deuda eliminada libera dinero para invertir en tu futuro</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     MÓDULO 06
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Módulo 06</div>
+      <h2>El Crédito en EE.UU.</h2>
+    </div>
+
+    <p class="chapter-intro">El crédito en Estados Unidos es la llave que abre o cierra puertas. Determina si puedes rentar un apartamento, las tasas de tu hipoteca, y hasta si te contratan en ciertos trabajos. Aquí aprenderás a dominarlo.</p>
+
+    <div class="section-title">¿Qué es el FICO Score?</div>
+
+    <p>El <strong>FICO Score</strong> es un número entre 300 y 850 que representa qué tan confiable eres para pagar deudas. Las tres principales agencias que lo calculan son Equifax, Experian y TransUnion.</p>
+
+    <table>
+      <tr><th>Rango de puntaje</th><th>Clasificación</th><th>Lo que significa</th></tr>
+      <tr><td>800 – 850</td><td style="color:#16A34A;font-weight:800;">Excepcional</td><td>Las mejores tasas, aprobación inmediata</td></tr>
+      <tr><td>740 – 799</td><td style="color:#16A34A;font-weight:700;">Muy bueno</td><td>Tasas muy competitivas</td></tr>
+      <tr><td>670 – 739</td><td style="color:#7C3AED;font-weight:700;">Bueno</td><td>Aprobado con tasas normales</td></tr>
+      <tr><td>580 – 669</td><td style="color:#F59E0B;font-weight:700;">Regular</td><td>Tasas altas, puede requerir depósito</td></tr>
+      <tr><td>300 – 579</td><td style="color:#DC2626;font-weight:700;">Malo</td><td>Difícil aprobación, tasas muy altas</td></tr>
+    </table>
+
+    <div class="section-title">Los 5 factores de tu score</div>
+
+    <table>
+      <tr><th>Factor</th><th>Peso</th><th>Cómo mejorarlo</th></tr>
+      <tr><td><strong>Historial de pagos</strong></td><td style="color:#DC2626;font-weight:800;">35%</td><td>Nunca pagues tarde. Pon pagos en automático</td></tr>
+      <tr><td><strong>Utilización del crédito</strong></td><td style="color:#F59E0B;font-weight:800;">30%</td><td>Usa menos del 30% de tu límite disponible</td></tr>
+      <tr><td><strong>Antigüedad del crédito</strong></td><td style="color:#7C3AED;font-weight:800;">15%</td><td>No canceles tarjetas antiguas</td></tr>
+      <tr><td><strong>Tipos de crédito</strong></td><td style="color:#6B7280;font-weight:800;">10%</td><td>Mix de tarjetas, auto, hipoteca es bueno</td></tr>
+      <tr><td><strong>Nuevas solicitudes</strong></td><td style="color:#6B7280;font-weight:800;">10%</td><td>No apliques a muchas tarjetas a la vez</td></tr>
+    </table>
+
+    <div class="section-title">Construir crédito desde cero</div>
+
+    <p>Si llegaste a EE.UU. sin historial crediticio, aquí está el camino más rápido:</p>
+
+    <ol>
+      <li><strong>Secured Credit Card:</strong> Depositas $200-500 como garantía y te dan una tarjeta con ese límite. Capital One Secured y Discover IT Secured son las mejores opciones. Úsala para 1-2 gastos pequeños al mes y págala completa.</li>
+      <li><strong>Credit Builder Loan:</strong> Bancos como Self o Credit Strong ofrecen préstamos pequeños ($25-50/mes) específicamente para construir crédito. El dinero lo recibes al final.</li>
+      <li><strong>Convertirte en usuario autorizado:</strong> Pide a un familiar con buen crédito que te agregue a su tarjeta. Su historial puede mejorar el tuyo, aunque no uses la tarjeta.</li>
+    </ol>
+
+    <div class="box box-green">
+      <div class="box-title">📈 Plan de 12 meses: de 580 a 720+</div>
+      <ul>
+        <li><strong>Mes 1-2:</strong> Paga TODO a tiempo. Sin excepción.</li>
+        <li><strong>Mes 3-4:</strong> Reduce utilización a menos del 30%</li>
+        <li><strong>Mes 5-6:</strong> Revisa tu reporte gratis en annualcreditreport.com y disputa errores</li>
+        <li><strong>Mes 7-12:</strong> Mantén los hábitos, considera una segunda tarjeta</li>
+      </ul>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">📝 Ejercicio del Módulo 6</div>
+      <p>Hoy mismo: 1) Ve a <strong>annualcreditreport.com</strong> y descarga tu reporte gratis de las 3 agencias. 2) Revisa si hay errores y dispútalos si los encuentras. 3) Anota tu score actual y el factor que más necesita trabajo. 4) Activa alertas de pago en tu banco para no olvidar ninguna fecha.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">🌟 Puntos clave del Módulo 6</div>
+      <ul>
+        <li>Pagar a tiempo es el factor más importante (35%) — jamás llegues tarde</li>
+        <li>Mantén tu utilización por debajo del 30% de tu límite total</li>
+        <li>Tu reporte crediticio gratuito en annualcreditreport.com no afecta tu score</li>
+        <li>Los errores en el reporte son más comunes de lo que crees y puedes disputarlos gratis</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     MÓDULO 07
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Módulo 07</div>
+      <h2>Inversiones Para Principiantes</h2>
+    </div>
+
+    <p class="chapter-intro">Invertir no es solo para gente rica o con maestrías en finanzas. Con $50 al mes y la estrategia correcta, cualquier persona puede comenzar a construir riqueza real. El secreto no es cuánto inviertes — es cuándo empiezas.</p>
+
+    <div class="section-title">¿Por qué ahorrar no es suficiente?</div>
+
+    <p>La inflación promedio en EE.UU. es de 2-3% anual. Si tienes $10,000 en una cuenta de ahorro al 0.5% APY, en 10 años tu poder adquisitivo habrá <em>disminuido</em> — aunque el número en tu cuenta sea mayor. <strong>El dinero que no crece, pierde valor.</strong></p>
+
+    <div class="formula">Regla del 72: Años para duplicar = 72 ÷ Tasa de retorno</div>
+
+    <p>A una tasa del 7% (retorno histórico del S&P 500), tu dinero se duplica aproximadamente cada <strong>10 años</strong>. A 0.5% (cuenta de ahorro tradicional), tardarías 144 años.</p>
+
+    <div class="section-title">Conceptos básicos que debes conocer</div>
+
+    <table>
+      <tr><th>Término</th><th>Explicación simple</th></tr>
+      <tr><td><strong>Acción (Stock)</strong></td><td>Un pedazo pequeño de una empresa. Si la empresa crece, tu inversión crece.</td></tr>
+      <tr><td><strong>ETF</strong></td><td>Una canasta de muchas acciones. Como comprar una rebanada de 500 empresas a la vez.</td></tr>
+      <tr><td><strong>S&P 500</strong></td><td>Las 500 empresas más grandes de EE.UU. Ha crecido ~10% promedio anual históricamente.</td></tr>
+      <tr><td><strong>Dividendos</strong></td><td>Pagos que hacen algunas empresas a sus accionistas — dinero extra que recibes.</td></tr>
+      <tr><td><strong>DCA</strong></td><td>Dollar Cost Averaging — invertir la misma cantidad cada mes, sin importar el precio.</td></tr>
+    </table>
+
+    <div class="section-title">La estrategia del 90%: ETFs de índice</div>
+
+    <p>Warren Buffett, uno de los inversores más exitosos del mundo, ha recomendado públicamente que la mayoría de las personas simplemente compren un <strong>ETF del S&P 500</strong> y lo mantengan a largo plazo.</p>
+
+    <div class="box box-yellow">
+      <div class="box-title">📊 El poder del tiempo con $200/mes</div>
+      <table style="margin:0;">
+        <tr><th>Años invirtiendo</th><th>Total aportado</th><th>Con 8% anual</th></tr>
+        <tr><td>10 años</td><td>$24,000</td><td><strong>$36,589</strong></td></tr>
+        <tr><td>20 años</td><td>$48,000</td><td><strong>$117,804</strong></td></tr>
+        <tr><td>30 años</td><td>$72,000</td><td><strong>$298,072</strong></td></tr>
+      </table>
+    </div>
+
+    <div class="section-title">¿Dónde comprar ETFs?</div>
+
+    <ul>
+      <li><strong>Fidelity:</strong> Sin comisiones, excelente para principiantes, ETFs propios con 0% expense ratio</li>
+      <li><strong>Charles Schwab:</strong> Sin mínimo de inversión, muy confiable</li>
+      <li><strong>Vanguard:</strong> El creador de los fondos índice, excelente para largo plazo</li>
+      <li><strong>Robinhood:</strong> App sencilla, buena para empezar, pero con menos herramientas</li>
+    </ul>
+
+    <p><strong>ETFs recomendados para empezar:</strong> VOO (S&P 500 de Vanguard), SPY (SPDR S&P 500), o FXAIX (Fidelity S&P 500).</p>
+
+    <div class="exercise">
+      <div class="exercise-title">📝 Ejercicio del Módulo 7</div>
+      <p>Esta semana: 1) Abre una cuenta en Fidelity o Schwab (es gratis y tarda 15 minutos). 2) Deposita cualquier cantidad — aunque sean $25. 3) Compra una fracción de un ETF del S&P 500. 4) Configura una transferencia automática mensual. Ya eres inversionista.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">🌟 Puntos clave del Módulo 7</div>
+      <ul>
+        <li>El tiempo en el mercado vence al momento perfecto para entrar — empieza hoy</li>
+        <li>Los ETFs de índice superan al 85% de los fondos manejados por "expertos" a largo plazo</li>
+        <li>DCA (invertir mensualmente la misma cantidad) reduce el riesgo automáticamente</li>
+        <li>No retires tu inversión cuando el mercado baje — las caídas son oportunidades de compra</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     MÓDULO 08
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Módulo 08</div>
+      <h2>Retiro Sin Depender de Nadie</h2>
+    </div>
+
+    <p class="chapter-intro">El Seguro Social no será suficiente para vivir cómodamente. Pero las cuentas de retiro en EE.UU. ofrecen ventajas fiscales increíbles que la mayoría de los latinos no está aprovechando. Es hora de cambiar eso.</p>
+
+    <div class="section-title">Las 3 cuentas de retiro que debes conocer</div>
+
+    <table>
+      <tr><th>Cuenta</th><th>Límite 2024</th><th>Ventaja fiscal</th><th>¿Para quién?</th></tr>
+      <tr><td><strong>401(k)</strong></td><td>$23,000/año</td><td>Aportes pre-impuesto, crece sin impuestos</td><td>Si tu empleador lo ofrece</td></tr>
+      <tr><td><strong>Traditional IRA</strong></td><td>$7,000/año</td><td>Aportes deducibles, pagas impuestos al retirar</td><td>Si crees que ganas más ahora</td></tr>
+      <tr><td><strong>Roth IRA</strong></td><td>$7,000/año</td><td>Aportes con dinero ya gravado, retiro 100% libre</td><td>Si crees que ganarás más al retirarte</td></tr>
+    </table>
+
+    <div class="box box-green">
+      <div class="box-title">💰 El match del 401(k): dinero gratis que no debes rechazar</div>
+      <p>Si tu empleador te ofrece un match del 4% en tu 401(k) y tú contribuyes 4% de tu salario de $50,000, tu empleador pone $2,000 adicionales al año — <strong>gratis</strong>. No aprovechar este beneficio es equivalente a rechazar un aumento de salario.</p>
+    </div>
+
+    <div class="section-title">¿Roth IRA o Traditional IRA?</div>
+
+    <div class="compare-grid">
+      <div class="compare-card compare-good">
+        <div class="compare-label">✅ Roth IRA (recomendado para la mayoría)</div>
+        <ul>
+          <li>Contribuyes con dinero ya gravado</li>
+          <li>Crece libre de impuestos</li>
+          <li>Al retirar después de 59½: $0 en impuestos</li>
+          <li>Puedes retirar aportes (no ganancias) en emergencias</li>
+          <li>Ideal si estás en tramo impositivo bajo ahora</li>
+        </ul>
+      </div>
+      <div class="compare-card compare-good">
+        <div class="compare-label">✅ Traditional IRA</div>
+        <ul>
+          <li>Contribuyes y reduces impuestos ahora</li>
+          <li>Crece libre de impuestos</li>
+          <li>Pagas impuestos al retirar</li>
+          <li>Bueno si tus ingresos actuales son altos</li>
+          <li>Forzado a retirar a los 73 años (RMD)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-title">El poder del interés compuesto</div>
+
+    <p>Einstein supuestamente llamó al interés compuesto "la octava maravilla del mundo". La razón es simple: <strong>ganas interés sobre tu interés</strong>. Con el tiempo, el efecto es exponencial.</p>
+
+    <div class="box box-yellow">
+      <div class="box-title">📊 Ana vs Carlos: la diferencia de empezar a tiempo</div>
+      <p><strong>Ana</strong> empieza a invertir $300/mes a los 25 años y para a los 35 (10 años, $36,000 total). <strong>Carlos</strong> empieza a los 35 y invierte $300/mes hasta los 65 (30 años, $108,000 total). A los 65, asumiendo 8% anual: Ana tiene <strong>$460,000</strong> y Carlos tiene <strong>$408,000</strong>. Ana invirtió 3 veces menos dinero y tiene más. El tiempo es el ingrediente más poderoso.</p>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">📝 Ejercicio del Módulo 8</div>
+      <p>1) Verifica si tu empleador ofrece 401(k) con match — si sí, aumenta tu contribución hasta el match mínimo esta semana. 2) Abre una Roth IRA en Fidelity o Vanguard si no tienes una (puedes hacerlo en 15 minutos con $1 de depósito inicial). 3) Calcula tu número de retiro: ¿cuánto necesitas mensualmente para vivir cómodo? Multiplica por 300 — esa es tu meta de inversión.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">🌟 Puntos clave del Módulo 8</div>
+      <ul>
+        <li>Siempre contribuye al menos hasta el match de tu empleador — es dinero gratis</li>
+        <li>El Roth IRA es ideal para la mayoría de latinos en etapas tempranas de carrera</li>
+        <li>Empieza con $50/mes — la cantidad importa menos que el hábito</li>
+        <li>Nunca retires dinero del retiro anticipadamente — las penalidades destruyen el crecimiento</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     MÓDULO 09
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Módulo 09</div>
+      <h2>Tu Primera Casa en EE.UU.</h2>
+    </div>
+
+    <p class="chapter-intro">Comprar una casa es el sueño americano — y es totalmente alcanzable para los latinos en EE.UU. Pero el proceso hipotecario puede ser abrumador si nadie te lo explica. Aquí lo hacemos en español, sin letra pequeña.</p>
+
+    <div class="section-title">¿Alquilar o comprar? La respuesta real</div>
+
+    <p>No hay una respuesta única. Comprar tiene sentido si: planeas quedarte en el área al menos 5-7 años, tienes crédito de 580+ (idealmente 620+), tienes para el down payment, y tus finanzas están estables. Alquilar tiene sentido si: tu situación es temporal, el mercado está muy inflado, o todavía estás pagando deudas.</p>
+
+    <div class="section-title">Los tipos de hipoteca más comunes</div>
+
+    <table>
+      <tr><th>Tipo</th><th>Down Payment</th><th>Score mínimo</th><th>Ideal para</th></tr>
+      <tr><td><strong>FHA Loan</strong></td><td>3.5%</td><td>580</td><td>Compradores primerizos con crédito regular</td></tr>
+      <tr><td><strong>Conventional</strong></td><td>3-20%</td><td>620</td><td>Quienes tienen buen crédito</td></tr>
+      <tr><td><strong>VA Loan</strong></td><td>0%</td><td>Varía</td><td>Veteranos militares</td></tr>
+      <tr><td><strong>USDA Loan</strong></td><td>0%</td><td>640</td><td>Áreas rurales o suburbanas</td></tr>
+    </table>
+
+    <div class="box box-purple">
+      <div class="box-title">🏠 Programas de ayuda para latinos</div>
+      <p>Muchos estados y ciudades tienen programas de <strong>Down Payment Assistance (DPA)</strong> para compradores primerizos. Algunos ofrecen $5,000-$25,000 en asistencia, que puede ser un préstamo sin intereses o incluso un regalo. Busca en el HUD (hud.gov) los programas disponibles en tu área.</p>
+    </div>
+
+    <div class="section-title">El proceso hipotecario paso a paso</div>
+
+    <ol>
+      <li><strong>Mejora tu crédito (580+ mínimo, 700+ ideal):</strong> Aplica lo del Módulo 6 por 6-12 meses antes.</li>
+      <li><strong>Ahorra el down payment:</strong> FHA requiere 3.5% del precio. Para una casa de $250,000, eso es $8,750.</li>
+      <li><strong>Pre-aprobación hipotecaria:</strong> Antes de buscar casa, obtén una carta de pre-aprobación de al menos 3 lenders diferentes.</li>
+      <li><strong>Busca tu casa:</strong> Con tu pre-aprobación, trabaja con un agente de bienes raíces — generalmente gratis para el comprador.</li>
+      <li><strong>Haz una oferta y negocia:</strong> Tu agente te guiará en este proceso.</li>
+      <li><strong>Inspección y tasación:</strong> Siempre paga por una inspección profesional ($300-500 bien invertidos).</li>
+      <li><strong>Closing:</strong> Firmas los documentos y recibes las llaves. Prepárate para los closing costs (2-5% del precio de la casa).</li>
+    </ol>
+
+    <div class="section-title">El ratio DTI: lo que los bancos miran</div>
+
+    <p>El <strong>Debt-to-Income ratio (DTI)</strong> es la proporción de tus deudas mensuales vs. tus ingresos. La mayoría de prestamistas quieren un DTI de menos del 43%.</p>
+
+    <div class="formula">DTI = (Deudas mensuales totales ÷ Ingreso bruto mensual) × 100</div>
+
+    <p>Ejemplo: Si ganas $5,000/mes y tus pagos de deudas son $1,800/mes, tu DTI es 36% — generalmente aceptable. Para mejorar tu DTI: aumenta ingresos o elimina deudas antes de aplicar.</p>
+
+    <div class="exercise">
+      <div class="exercise-title">📝 Ejercicio del Módulo 9</div>
+      <p>1) Calcula tu DTI actual con la fórmula anterior. 2) Determina el precio de casa que puedes pagar (generalmente 2.5-3x tu ingreso anual). 3) Busca en hud.gov los programas de ayuda disponibles en tu ciudad. 4) Si no estás listo, crea un plan de 12-24 meses con metas de crédito y ahorro.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">🌟 Puntos clave del Módulo 9</div>
+      <ul>
+        <li>FHA loan permite comprar con solo 3.5% de enganche y 580 de crédito</li>
+        <li>Los programas de Down Payment Assistance pueden darte hasta $25,000 de ayuda</li>
+        <li>Obtén pre-aprobación de 3 lenders y compara — puede ahorrarte miles en intereses</li>
+        <li>Nunca compres la casa más cara que te aprueben — compra la que cómodamente puedes pagar</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     MÓDULO 10
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Módulo 10</div>
+      <h2>Legado y Libertad Financiera</h2>
+    </div>
+
+    <p class="chapter-intro">La libertad financiera no es un número mágico solo para millonarios. Es el punto donde tus inversiones generan suficiente dinero para cubrir tus gastos sin necesitar trabajar. Y es más alcanzable de lo que crees.</p>
+
+    <div class="section-title">¿Qué es realmente la libertad financiera?</div>
+
+    <p>Libertad financiera no significa ser rico — significa que el dinero ya no controla tus decisiones. Puedes elegir trabajar porque quieres, no porque necesitas. Puedes decir no a situaciones tóxicas. Puedes vivir en tus propios términos.</p>
+
+    <p>Existen diferentes niveles:</p>
+
+    <ol>
+      <li><strong>Sin deudas:</strong> No debes nada a nadie excepto quizás la hipoteca</li>
+      <li><strong>Fondo de emergencia completo:</strong> 6 meses de gastos en el banco</li>
+      <li><strong>Ingresos de inversiones cubren gastos básicos:</strong> Podrías sobrevivir sin trabajar</li>
+      <li><strong>Ingresos de inversiones cubren estilo de vida completo:</strong> Libertad total</li>
+    </ol>
+
+    <div class="section-title">La Regla del 4%: cuánto necesitas</div>
+
+    <p>La <strong>regla del 4%</strong> dice que si retiras el 4% de tu portafolio al año, estadísticamente tu dinero durará 30+ años. Para calcular tu número de libertad financiera:</p>
+
+    <div class="formula">Meta de inversión = Gastos anuales × 25</div>
+
+    <table>
+      <tr><th>Gastos mensuales</th><th>Gastos anuales</th><th>Meta de inversión</th></tr>
+      <tr><td>$2,000</td><td>$24,000</td><td><strong>$600,000</strong></td></tr>
+      <tr><td>$3,000</td><td>$36,000</td><td><strong>$900,000</strong></td></tr>
+      <tr><td>$4,000</td><td>$48,000</td><td><strong>$1,200,000</strong></td></tr>
+      <tr><td>$5,000</td><td>$60,000</td><td><strong>$1,500,000</strong></td></tr>
+    </table>
+
+    <div class="section-title">Protege lo que construiste: Seguros esenciales</div>
+
+    <table>
+      <tr><th>Seguro</th><th>¿Por qué lo necesitas?</th><th>Recomendación</th></tr>
+      <tr><td><strong>Vida (Term Life)</strong></td><td>Protege a tu familia si falleces</td><td>10-12x tu ingreso anual por 20-30 años</td></tr>
+      <tr><td><strong>Discapacidad</strong></td><td>Tu ingreso si no puedes trabajar</td><td>60-70% de tu ingreso mensual</td></tr>
+      <tr><td><strong>Salud</strong></td><td>Una emergencia médica puede arruinarte</td><td>El mejor que puedas pagar</td></tr>
+    </table>
+
+    <div class="box box-red">
+      <div class="box-title">⚠️ Whole Life Insurance: cuidado</div>
+      <p>Los agentes de seguros frecuentemente promueven el <em>Whole Life Insurance</em> como inversión. En la mayoría de los casos, es mejor un <strong>Term Life Insurance</strong> (seguro de término) e invertir la diferencia en un Roth IRA. El whole life tiene comisiones altísimas y retornos bajos.</p>
+    </div>
+
+    <div class="section-title">Tu legado: Testamento y Trust</div>
+
+    <p>Muchos latinos evitan hablar de este tema porque se siente como hablar de muerte. Pero no tener un testamento puede ser devastador para tu familia — tus bienes podrían terminar en manos del estado o en disputas legales costosas.</p>
+
+    <ul>
+      <li><strong>Testamento básico (Will):</strong> Especifica quién recibe qué. Puedes hacerlo online en LegalZoom por $100-200.</li>
+      <li><strong>Living Trust:</strong> Evita el proceso de probate (corte), protege tu privacidad, ideal si tienes propiedades.</li>
+      <li><strong>Beneficiarios:</strong> Actualiza los beneficiarios en TODAS tus cuentas: banco, retiro, seguros. Esto supera al testamento.</li>
+      <li><strong>Power of Attorney:</strong> Designa quién toma decisiones si quedas incapacitado.</li>
+    </ul>
+
+    <div class="section-title">Enseña a tus hijos sobre el dinero</div>
+
+    <p>El mejor legado no es el dinero que les dejas — es la educación financiera que les das. Los niños que aprenden sobre dinero desde pequeños toman mejores decisiones de por vida.</p>
+
+    <ul>
+      <li>Desde los 5 años: Explica qué es el dinero y de dónde viene</li>
+      <li>Desde los 8 años: Una mesada para aprender a administrar</li>
+      <li>Desde los 12 años: Muéstrales cómo funciona una cuenta de banco</li>
+      <li>Desde los 16 años: Abre una cuenta de inversión custodial (UGMA/UTMA)</li>
+    </ul>
+
+    <div class="exercise">
+      <div class="exercise-title">📝 Ejercicio del Módulo 10</div>
+      <p>1) Calcula tu número de libertad financiera (gastos mensuales × 12 × 25). 2) Verifica que todos tus beneficiarios en cuentas bancarias y de retiro estén actualizados. 3) Si tienes dependientes, cotiza un seguro de vida término en Policygenius.com (en 10 minutos). 4) Escribe una carta con tus deseos — aunque no sea legal, es un inicio importante.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">🌟 Puntos clave del Módulo 10</div>
+      <ul>
+        <li>La libertad financiera es alcanzable para cualquiera con disciplina y tiempo</li>
+        <li>Term Life Insurance + inversión en Roth IRA es mejor que Whole Life para la mayoría</li>
+        <li>Actualizar beneficiarios es lo más importante y lo más olvidado</li>
+        <li>El mejor legado para tus hijos es enseñarles a manejar el dinero desde pequeños</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-sep">· · ·</div>
+
+<!-- ══════════════════════════════════════
+     CTA FINAL — ASESORÍA
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="cta-page">
+    <div class="cover-top-bar"></div>
+    <div style="position:absolute;width:500px;height:500px;background:rgba(124,58,237,0.2);border-radius:50%;filter:blur(100px);top:-100px;left:-100px;pointer-events:none;"></div>
+    <div style="position:absolute;width:300px;height:300px;background:rgba(250,204,21,0.1);border-radius:50%;filter:blur(80px);bottom:-50px;right:-50px;pointer-events:none;"></div>
+
+    <div class="cta-inner">
+      <div style="text-align:center;margin-bottom:48px;">
+        <div style="font-size:48px;margin-bottom:16px;">🎯</div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(250,204,21,0.1);border:1px solid rgba(250,204,21,0.3);color:#FACC15;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:6px 16px;border-radius:100px;margin-bottom:20px;">
+          Tu siguiente paso
+        </div>
+        <h2 style="font-size:40px;font-weight:900;color:#fff;margin-bottom:16px;letter-spacing:-1px;line-height:1.1;">
+          El conocimiento es poderoso.<br/>
+          <span style="color:#FACC15;">La acción personalizada lo es más.</span>
+        </h2>
+        <p style="color:rgba(255,255,255,0.6);font-size:17px;max-width:560px;margin:0 auto;line-height:1.7;">
+          Este ebook te dio el mapa. Una asesoría personalizada te da el GPS — con tu dirección exacta, tus obstáculos específicos, y el camino más corto hacia tus metas financieras.
+        </p>
+      </div>
+
+      <!-- Card de asesoría -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:40px;max-width:680px;margin:0 auto 40px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+          <div>
+            <div style="color:#A78BFA;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;">Lo que incluye</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <span style="font-size:18px;">⏱️</span>
+                <div>
+                  <div style="color:#fff;font-weight:700;font-size:14px;">60 minutos contigo</div>
+                  <div style="color:rgba(255,255,255,0.4);font-size:12px;">Sesión 1-a-1 con un Licenciado Financiero</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <span style="font-size:18px;">📋</span>
+                <div>
+                  <div style="color:#fff;font-weight:700;font-size:14px;">Plan financiero personalizado</div>
+                  <div style="color:rgba(255,255,255,0.4);font-size:12px;">Hecho para tu situación, ingresos y metas</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <span style="font-size:18px;">📱</span>
+                <div>
+                  <div style="color:#fff;font-weight:700;font-size:14px;">Seguimiento por WhatsApp</div>
+                  <div style="color:rgba(255,255,255,0.4);font-size:12px;">Acceso directo para resolver dudas</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <span style="font-size:18px;">📁</span>
+                <div>
+                  <div style="color:#fff;font-weight:700;font-size:14px;">Plantillas y recursos</div>
+                  <div style="color:rgba(255,255,255,0.4);font-size:12px;">Herramientas para implementar tu plan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-left:1px solid rgba(255,255,255,0.08);padding-left:32px;">
+            <div style="color:rgba(255,255,255,0.3);font-size:14px;text-decoration:line-through;margin-bottom:4px;">Valor real: $497</div>
+            <div style="font-size:72px;font-weight:900;color:#FACC15;line-height:1;">$0</div>
+            <div style="color:#A78BFA;font-size:14px;font-weight:700;margin-bottom:24px;">Para clientes BBER</div>
+
+            <a href="https://wa.me/16304154252?text=Hola%2C%20terminé%20de%20leer%20el%20ebook%20de%20BBER%20y%20quiero%20mi%20asesoría%20personalizada%20gratuita"
+               target="_blank"
+               style="display:inline-block;background:#FACC15;color:#000;font-weight:900;font-size:14px;padding:14px 24px;border-radius:12px;text-decoration:none;margin-bottom:10px;">
+              📱 Agendar por WhatsApp
+            </a>
+            <div style="color:rgba(255,255,255,0.3);font-size:11px;">Cupos limitados · Sin compromiso</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonios mini -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:680px;margin:0 auto 48px;">
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;">
+          <div style="color:#FACC15;font-size:12px;margin-bottom:8px;">★★★★★</div>
+          <p style="color:rgba(255,255,255,0.6);font-size:12px;line-height:1.6;margin:0 0 8px;">"Pagué $8,000 en deudas en un año. Imposible sin BBER."</p>
+          <div style="color:rgba(255,255,255,0.3);font-size:11px;">Rosa M. · Chicago, IL</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;">
+          <div style="color:#FACC15;font-size:12px;margin-bottom:8px;">★★★★★</div>
+          <p style="color:rgba(255,255,255,0.6);font-size:12px;line-height:1.6;margin:0 0 8px;">"A los 34 abrí mi Roth IRA. Cambió todo para mi familia."</p>
+          <div style="color:rgba(255,255,255,0.3);font-size:11px;">Carlos H. · Houston, TX</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;">
+          <div style="color:#FACC15;font-size:12px;margin-bottom:8px;">★★★★★</div>
+          <p style="color:rgba(255,255,255,0.6);font-size:12px;line-height:1.6;margin:0 0 8px;">"De 580 a 720 en crédito en 8 meses. ¡Gracias BBER!"</p>
+          <div style="color:rgba(255,255,255,0.3);font-size:11px;">Juliana T. · Miami, FL</div>
+        </div>
+      </div>
+
+      <!-- Final message -->
+      <div style="text-align:center;">
+        <p style="color:rgba(255,255,255,0.4);font-size:14px;line-height:1.8;margin-bottom:24px;">
+          El mejor momento para empezar fue hace 10 años.<br/>
+          <strong style="color:#fff;">El segundo mejor momento es hoy.</strong>
+        </p>
+
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:40px;">
+          <div style="width:28px;height:28px;background:#7C3AED;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:13px;">B</div>
+          <span style="font-weight:900;color:#fff;font-size:18px;">BBER</span>
+        </div>
+
+        <p style="color:rgba(255,255,255,0.2);font-size:11px;line-height:1.8;">
+          © 2025 BBER · Educación financiera para latinos en EE.UU.<br/>
+          BBER no es un asesor de inversiones registrado. El contenido es solo educativo.<br/>
+          <a href="https://bber-landing.vercel.app" style="color:rgba(255,255,255,0.3);text-decoration:none;">bber-landing.vercel.app</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
