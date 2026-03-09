@@ -93,8 +93,13 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         from: 'BBER <info@bber.space>',
         to: email,
-        subject: `¡Bienvenido/a a BBER, ${name}! Tu acceso gratuito está listo 🎉`,
+        subject: `Hola ${name}, tu cuenta en BBER está lista`,
         html,
+        text: `Hola ${name},\n\nBienvenido/a a BBER. Tu acceso está confirmado.\n\nDescarga tu ebook gratuito aquí: https://bber.space/ebook.html\n\n¿Tienes dudas? Escríbenos por WhatsApp: https://wa.me/16304154252\n\n© ${new Date().getFullYear()} BBER · bber.space\nRecibiste este correo porque te registraste en nuestro sitio web.`,
+        headers: {
+          'List-Unsubscribe': '<mailto:unsubscribe@bber.space>',
+          'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+        },
       }),
     })
 
