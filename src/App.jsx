@@ -553,12 +553,20 @@ function LeadForm() {
     if (Object.keys(errs).length) { setErrors(errs); return }
     setLoading(true)
     try {
+      // 1. Guardar en Supabase
       const { error } = await supabase
         .from('leads')
         .insert([{ name: form.name, email: form.email, phone: form.phone }])
       if (error) console.error('Supabase:', error.message)
+
+      // 2. Enviar email de bienvenida
+      await fetch('/api/send-welcome', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: form.name, email: form.email }),
+      })
     } catch (err) {
-      console.error('Error al guardar lead:', err)
+      console.error('Error:', err)
     } finally {
       setLoading(false)
       setSubmitted(true)
