@@ -1,12 +1,59 @@
+// Rate limiting en memoria (se resetea por instancia serverless)
+const rateLimit = new Map()
+
+function isRateLimited(ip) {
+  const now = Date.now()
+  const windowMs = 60 * 1000 // 1 minuto
+  const max = 5               // máx 5 emails por IP por minuto
+
+  const entry = rateLimit.get(ip) || { count: 0, start: now }
+  if (now - entry.start > windowMs) {
+    rateLimit.set(ip, { count: 1, start: now })
+    return false
+  }
+  if (entry.count >= max) return true
+  entry.count++
+  rateLimit.set(ip, entry)
+  return false
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
+  // Rate limiting
+  const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket?.remoteAddress || 'unknown'
+  if (isRateLimited(ip)) {
+    return res.status(429).json({ error: 'Demasiadas solicitudes. Intenta en un minuto.' })
+  }
+
   const { name, email } = req.body
+
+  // Validación
   if (!name || !email) {
     return res.status(400).json({ error: 'Faltan datos' })
   }
+  if (typeof name !== 'string' || name.length > 100) {
+    return res.status(400).json({ error: 'Nombre inválido' })
+  }
+  if (!EMAIL_REGEX.test(email) || email.length > 254) {
+    return res.status(400).json({ error: 'Correo inválido' })
+  }
+
+  // Sanitizar para uso en HTML
+  const safeName = escapeHtml(name.trim())
 
   const html = `<!DOCTYPE html>
 <html lang="es">
@@ -27,11 +74,11 @@ export default async function handler(req, res) {
       <div style="padding:36px 32px;">
 
         <h1 style="color:#ffffff;font-size:26px;font-weight:900;margin:0 0 10px 0;line-height:1.2;">
-          ¡Bienvenido/a, ${name}! 🎉
+          ¡Bienvenido/a, ${safeName}!
         </h1>
         <p style="color:#B3B3B3;font-size:15px;line-height:1.7;margin:0 0 28px 0;">
           Ya eres parte de la comunidad <strong style="color:#ffffff;">BBER</strong>.
-          Tu acceso gratuito está confirmado.
+          Tu acceso está confirmado.
         </p>
 
         <div style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.25);border-radius:14px;padding:20px;margin-bottom:14px;">
@@ -93,9 +140,9 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         from: 'BBER <info@bber.space>',
         to: email,
-        subject: `Hola ${name}, tu cuenta en BBER está lista`,
+        subject: `Hola ${name.trim()}, tu cuenta en BBER está lista`,
         html,
-        text: `Hola ${name},\n\nBienvenido/a a BBER. Tu acceso está confirmado.\n\nDescarga tu ebook gratuito aquí: https://bber.space/ebook.html\n\n¿Tienes dudas? Escríbenos por WhatsApp: https://wa.me/16304154252\n\n© ${new Date().getFullYear()} BBER · bber.space\nRecibiste este correo porque te registraste en nuestro sitio web.`,
+        text: `Hola ${name.trim()},\n\nBienvenido/a a BBER. Tu acceso está confirmado.\n\nDescarga tu ebook gratuito aquí: https://bber.space/ebook.html\n\n¿Tienes dudas? Escríbenos por WhatsApp: https://wa.me/16304154252\n\n© ${new Date().getFullYear()} BBER · bber.space\nRecibiste este correo porque te registraste en nuestro sitio web.`,
         headers: {
           'List-Unsubscribe': '<mailto:unsubscribe@bber.space>',
           'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
@@ -107,12 +154,12 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       console.error('Resend error:', JSON.stringify(data))
-      return res.status(500).json({ error: data })
+      return res.status(500).json({ error: 'Error al enviar el correo' })
     }
 
     return res.status(200).json({ success: true, id: data.id })
   } catch (err) {
     console.error('Error:', err)
-    return res.status(500).json({ error: err.message })
+    return res.status(500).json({ error: 'Error interno del servidor' })
   }
 }
