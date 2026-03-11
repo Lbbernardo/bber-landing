@@ -965,10 +965,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <LeadForm />
         <Problem />
         <Benefits />
         <OfferCards />
-        <LeadForm />
         <Trust />
         <FinalCTA />
       </main>
