@@ -198,6 +198,18 @@ function AppointmentScheduler({ contactInfo }) {
     } catch (e) {
       console.error('Supabase appointments error:', JSON.stringify(e))
     }
+
+    // Notificar al admin por email
+    supabase.functions.invoke('notify-new-appointment', {
+      body: {
+        name:            contactInfo.name,
+        email:           contactInfo.email || null,
+        phone:           contactInfo.phone || null,
+        appointmentDate: selectedDate.toISOString().slice(0, 10),
+        appointmentTime: selectedTime,
+      },
+    }).catch(() => {}) // silencioso si falla
+
     setConfirmed(true)
     setSaving(false)
   }
@@ -384,7 +396,11 @@ function Form({ onSubmit }) {
       if (!fields.savings || parseFloat(fields.savings) <= 0) e.savings = 'Ingresa un monto válido'
     }
     if (s === 3) { if (!fields.discipline) e.discipline = 'Selecciona una opción' }
-    if (s === 4) { if (!fields.name || fields.name.trim().length < 2) e.name = 'Ingresa tu nombre' }
+    if (s === 4) {
+      if (!fields.name || fields.name.trim().length < 2) e.name = 'Ingresa tu nombre'
+      if (!fields.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email.trim())) e.email = 'Ingresa un email válido'
+      if (!fields.phone || fields.phone.trim().length < 7) e.phone = 'Ingresa tu teléfono'
+    }
     return e
   }
 
@@ -516,12 +532,14 @@ function Form({ onSubmit }) {
                   {errors.name && <p className={err}>{errors.name}</p>}
                 </div>
                 <div>
-                  <label className="block text-brand-muted text-sm mb-2">Email (opcional)</label>
+                  <label className="block text-brand-muted text-sm mb-2">Email *</label>
                   <input type="email" placeholder="ana@ejemplo.com" value={fields.email} onChange={e => set('email', e.target.value)} className={inp} />
+                  {errors.email && <p className={err}>{errors.email}</p>}
                 </div>
                 <div>
-                  <label className="block text-brand-muted text-sm mb-2">Teléfono (opcional)</label>
-                  <input type="tel" placeholder="+52 55 1234 5678" value={fields.phone} onChange={e => set('phone', e.target.value)} className={inp} />
+                  <label className="block text-brand-muted text-sm mb-2">Teléfono *</label>
+                  <input type="tel" placeholder="+1 555 123 4567" value={fields.phone} onChange={e => set('phone', e.target.value)} className={inp} />
+                  {errors.phone && <p className={err}>{errors.phone}</p>}
                 </div>
               </div>
             </>}
@@ -792,6 +810,22 @@ export default function CalculadoraFinanciera() {
     } catch (e) {
       console.error('Supabase retirement_leads error:', JSON.stringify(e))
     }
+
+    // Notificar al admin por email
+    supabase.functions.invoke('notify-new-lead', {
+      body: {
+        name:          data.name,
+        email:         data.email,
+        phone:         data.phone,
+        age:           data.age,
+        retirementAge: data.retirementAge,
+        savings:       data.savings,
+        desiredIncome: data.desiredIncome,
+        capital:       calc.capital,
+        income:        calc.income,
+        scenario:      calc.scenario,
+      },
+    }).catch(() => {}) // silencioso si falla
 
     // Pequeño delay para que el loading se sienta real
     await new Promise(r => setTimeout(r, 3000))
