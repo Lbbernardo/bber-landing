@@ -553,23 +553,16 @@ function LeadForm() {
     if (Object.keys(errs).length) { setErrors(errs); return }
     setLoading(true)
     try {
-      // 1. Guardar en Supabase
-      const { error } = await supabase
-        .from('leads')
-        .insert([{ name: form.name, email: form.email, phone: form.phone }])
-      if (error) console.error('Supabase:', error.message)
-
-      // 2. Enviar email de bienvenida
-      await fetch('/api/send-welcome', {
+      await fetch(`${import.meta.env.VITE_CRM_URL || ''}/api/webhook?account=luis-bernardo`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: form.name, email: form.email }),
+        body: JSON.stringify({ name: form.name, email: form.email, phone: form.phone, source: 'bber-landing' }),
       })
     } catch (err) {
       console.error('Error:', err)
     } finally {
       setLoading(false)
-      setSubmitted(true)
+      window.location.href = '/thankyou'
     }
   }
 
@@ -916,10 +909,12 @@ function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-muted">
-          <p>© {new Date().getFullYear()} BBER · Todos los derechos reservados.</p>
-          <p>
-            BBER no es un asesor de inversiones registrado. El contenido es educativo.
+        <div className="border-t border-white/5 pt-6 flex flex-col gap-3 text-xs text-brand-muted">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>© {new Date().getFullYear()} BBER · Luis Bernardo, Asesor Financiero Autorizado · Todos los derechos reservados.</p>
+          </div>
+          <p className="text-[10px] text-white/20 leading-relaxed">
+            Este sitio es de carácter educativo y no constituye asesoría fiscal, legal ni de inversión. Las estimaciones mostradas son ilustrativas y no garantizan rendimientos ni resultados futuros. La elegibilidad para cualquier producto financiero depende del caso individual. BBER no es un asesor de inversiones registrado. Se requiere consentimiento explícito para el envío de comunicaciones por correo electrónico, SMS o WhatsApp.
           </p>
         </div>
       </div>
