@@ -767,6 +767,9 @@ export default function CalculadoraFinanciera() {
 
     const finalResult = { ...calc, narrative: narrativeText, steps, tool }
 
+    // Pixel: Lead
+    if (window.fbq) window.fbq('track', 'Lead', { content_name: 'calculadora-retiro' })
+
     // Guardar en CRM
     fetch(`${import.meta.env.VITE_CRM_URL || ''}/api/webhook?account=luis-bernardo`, {
       method: 'POST',
@@ -809,6 +812,9 @@ export default function CalculadoraFinanciera() {
 
 function Gracias({ name, capital, income, onReset }) {
   const WSP = '16304154252'
+  if (typeof window !== 'undefined' && window.fbq) {
+    window.fbq('track', 'CompleteRegistration', { content_name: 'calculadora-gracias' })
+  }
   const msgClases = encodeURIComponent(`Hola Luis! Acabo de usar la calculadora y quiero mis clases gratuitas de retiro 🎓`)
   const msgExperto = encodeURIComponent(`Hola Luis! Acabo de proyectar mi retiro (capital: ${fmt(capital)}, ingreso: ${fmt(income)}/mes) y prefiero hablar con un experto financiero.`)
 

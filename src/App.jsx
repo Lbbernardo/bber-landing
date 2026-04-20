@@ -558,6 +558,7 @@ function LeadForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: form.name, email: form.email, phone: form.phone, source: 'bber-landing' }),
       })
+      if (window.fbq) window.fbq('track', 'Lead', { content_name: 'bber-landing' })
     } catch (err) {
       console.error('Error:', err)
     } finally {
