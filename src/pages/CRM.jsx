@@ -262,9 +262,18 @@ export default function CRM() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
 
         {/* ── Título ── */}
-        <div className="mb-7">
-          <h1 className="text-2xl font-black text-white">Panel de Leads</h1>
-          <p className="text-brand-muted text-sm mt-1">Gestiona las personas que completaron el formulario</p>
+        <div className="mb-7 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-black text-white">Panel de Leads</h1>
+            <p className="text-brand-muted text-sm mt-1">Gestiona las personas que completaron el formulario</p>
+          </div>
+          <button
+            onClick={() => navigate('/agente')}
+            className="inline-flex items-center gap-2 bg-brand-purple hover:bg-[#6d28d9] text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-all shrink-0 shadow-lg shadow-brand-purple/20"
+          >
+            <span className="text-base">🤖</span>
+            Abrir Agente de Ventas
+          </button>
         </div>
 
         {/* ── Tabs ── */}
