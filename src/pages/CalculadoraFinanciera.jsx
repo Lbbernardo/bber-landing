@@ -782,16 +782,13 @@ export default function CalculadoraFinanciera() {
     if (window.fbq) window.fbq('track', 'Lead', { content_name: 'calculadora-retiro' })
 
     // Guardar en CRM
-    fetch(`${import.meta.env.VITE_CRM_URL || ''}/api/webhook?account=luis-bernardo`, {
+    fetch('https://services.leadconnectorhq.com/hooks/vtWSv9kV9PHekvK5VirT/webhook-trigger/851ca584-29ff-469a-bbcb-15f48b8867d4', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name:   data.name,
-        email:  data.email || '',
-        phone:  data.phone || '',
-        age:    data.age,
-        source: 'calculadora-retiro',
-        notes:  `Retiro a los ${data.retirementAge} años · Ahorro: $${data.savings}/mes · Capital proyectado: ${fmt(calc.capital)} · Ingreso: ${fmt(calc.income)}/mes · Escenario: ${calc.scenario}`,
+        name:  data.name,
+        email: data.email || '',
+        phone: data.phone || '',
       }),
     }).catch(() => {})
 

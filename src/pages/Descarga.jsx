@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+const WEBHOOK = 'https://services.leadconnectorhq.com/hooks/vtWSv9kV9PHekvK5VirT/webhook-trigger/851ca584-29ff-469a-bbcb-15f48b8867d4'
+
 export default function Descarga() {
   const [form, setForm] = useState({ name: '', email: '', phone: '' })
   const [errors, setErrors] = useState({})
@@ -20,10 +22,10 @@ export default function Descarga() {
     if (Object.keys(errs).length) { setErrors(errs); return }
     setLoading(true)
     try {
-      await fetch(`${import.meta.env.VITE_CRM_URL || 'https://crmagencia-production.up.railway.app'}/api/webhook?account=luis-bernardo`, {
+      await fetch(WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: form.name, email: form.email, phone: form.phone, source: 'bber-landing' }),
+        body: JSON.stringify({ name: form.name, email: form.email, phone: form.phone }),
       })
     } catch (err) {
       console.error(err)
@@ -39,35 +41,35 @@ export default function Descarga() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans flex flex-col items-center justify-center px-4 py-16">
+    <div className="min-h-screen text-white font-sans flex flex-col items-center justify-center px-4 py-16"
+      style={{ background: '#0A1628' }}>
 
       {/* Logo */}
-      <a href="/bber/" className="flex items-center gap-2 mb-10">
-        <div className="w-8 h-8 rounded-lg bg-brand-purple flex items-center justify-center">
-          <span className="text-white font-black text-sm">B</span>
-        </div>
+      <a href="/" className="flex items-center gap-2 mb-10">
+        <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-black text-sm"
+          style={{ background: 'linear-gradient(135deg,#22C55E,#16A34A)' }}>B</div>
         <span className="font-black text-white text-lg tracking-tight">BBER</span>
       </a>
 
       <div className="w-full max-w-md">
-
         {submitted ? (
           /* ── Estado de éxito ── */
-          <div className="rounded-3xl border border-white/8 bg-[#0F0F0F] overflow-hidden text-center">
-            <div className="h-1 w-full bg-gradient-to-r from-brand-purple via-brand-lavender to-brand-yellow" />
+          <div className="card overflow-hidden text-center">
+            <div className="accent-bar" />
             <div className="p-10">
-              <div className="w-16 h-16 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center mx-auto mb-6 text-brand-yellow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-8 h-8">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                style={{ background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.3)' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2" className="w-8 h-8">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
               </div>
 
               <h2 className="text-2xl font-black text-white mb-3">¡Listo! Revisa tu correo</h2>
-              <p className="text-brand-muted text-sm leading-relaxed mb-2">
+              <p className="text-sm leading-relaxed mb-2" style={{ color: '#94A3B8' }}>
                 Te enviamos <strong className="text-white">La Guía Financiera del Latino en EE.UU.</strong> a:
               </p>
-              <p className="text-brand-yellow font-bold mb-6">{form.email}</p>
-              <p className="text-brand-muted text-xs mb-8">
+              <p className="font-bold mb-6" style={{ color: '#4ADE80' }}>{form.email}</p>
+              <p className="text-xs mb-8" style={{ color: '#4A5568' }}>
                 Si no lo ves en tu bandeja de entrada, revisa tu carpeta de spam.
               </p>
 
@@ -89,30 +91,30 @@ export default function Descarga() {
           /* ── Formulario ── */
           <>
             <div className="text-center mb-8">
-              <span className="inline-flex items-center gap-2 text-xs font-bold text-brand-yellow bg-brand-yellow/10 border border-brand-yellow/20 rounded-full px-3 py-1.5 mb-4 uppercase tracking-widest">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse" />
+              <span className="badge-green mb-4 inline-flex">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 Ebook gratuito
               </span>
               <h1 className="text-3xl font-black leading-tight mb-3">
                 Descarga la Guía Financiera<br />
-                <span className="text-brand-yellow">del Latino en EE.UU.</span>
+                <span style={{ color: '#22C55E' }}>del Latino en EE.UU.</span>
               </h1>
-              <p className="text-brand-muted text-sm">
+              <p className="text-sm" style={{ color: '#94A3B8' }}>
                 60+ páginas · 10 módulos · 100% en español · $0
               </p>
             </div>
 
-            <div className="rounded-3xl border border-white/8 bg-[#0F0F0F] overflow-hidden">
-              <div className="h-1 w-full bg-gradient-to-r from-brand-purple via-brand-lavender to-brand-yellow" />
+            <div className="card overflow-hidden">
+              <div className="accent-bar" />
               <form onSubmit={handleSubmit} noValidate className="p-8 space-y-5">
 
                 <div>
-                  <label className="block text-xs font-semibold text-brand-muted uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#94A3B8' }}>
                     Nombre completo
                   </label>
                   <input
                     type="text"
-                    className={`input-dark ${errors.name ? 'border-red-500/60' : ''}`}
+                    className={`input-field ${errors.name ? 'border-red-500/60' : ''}`}
                     placeholder="Ej. María López"
                     value={form.name}
                     onChange={handleChange('name')}
@@ -121,29 +123,29 @@ export default function Descarga() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-brand-muted uppercase tracking-wider mb-2">
-                    Correo electrónico <span className="text-brand-yellow">*</span>
+                  <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#94A3B8' }}>
+                    Correo electrónico <span style={{ color: '#22C55E' }}>*</span>
                   </label>
                   <input
                     type="email"
-                    className={`input-dark ${errors.email ? 'border-red-500/60' : ''}`}
+                    className={`input-field ${errors.email ? 'border-red-500/60' : ''}`}
                     placeholder="tucorreo@gmail.com"
                     value={form.email}
                     onChange={handleChange('email')}
                   />
                   {errors.email
                     ? <p className="text-red-400 text-xs mt-1.5">{errors.email}</p>
-                    : <p className="text-brand-muted text-xs mt-1.5">Aquí te enviamos el ebook</p>
+                    : <p className="text-xs mt-1.5" style={{ color: '#4A5568' }}>Aquí te enviamos el ebook</p>
                   }
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-brand-muted uppercase tracking-wider mb-2">
-                    Teléfono / WhatsApp <span className="text-brand-muted font-normal">(opcional)</span>
+                  <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#94A3B8' }}>
+                    Teléfono / WhatsApp <span className="font-normal" style={{ color: '#4A5568' }}>(opcional)</span>
                   </label>
                   <input
                     type="tel"
-                    className="input-dark"
+                    className="input-field"
                     placeholder="+1 (630) 000-0000"
                     value={form.phone}
                     onChange={handleChange('phone')}
@@ -153,7 +155,7 @@ export default function Descarga() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="btn-yellow w-full text-base py-4 font-black mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="btn-primary w-full text-base py-4 font-black mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {loading ? (
                     <svg className="animate-spin w-5 h-5 mx-auto" viewBox="0 0 24 24" fill="none">
@@ -171,7 +173,7 @@ export default function Descarga() {
                   )}
                 </button>
 
-                <p className="text-center text-xs text-brand-muted pt-1">
+                <p className="text-center text-xs pt-1" style={{ color: '#4A5568' }}>
                   🔒 Tu información está 100% segura. No spam, nunca.
                 </p>
               </form>

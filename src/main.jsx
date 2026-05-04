@@ -1,7 +1,8 @@
 import React, { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import App from './App'
+import Hub from './pages/Hub'
+import Curso from './pages/Curso'
 import Ebook from './pages/Ebook'
 import Descarga from './pages/Descarga'
 import CalculadoraFinanciera from './pages/CalculadoraFinanciera'
@@ -12,14 +13,16 @@ const CRM        = lazy(() => import('./pages/CRM'))
 const Agente     = lazy(() => import('./pages/Agente'))
 
 const ownDomains = ['bber.space', 'www.bber.space']
-const basename = ownDomains.includes(window.location.hostname) ? '/' : '/bber'
+const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+const basename = (ownDomains.includes(window.location.hostname) || isLocalhost) ? '/' : '/bber'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter basename={basename}>
       <Suspense fallback={null}>
         <Routes>
-          <Route path="/"            element={<App />} />
+          <Route path="/"            element={<Hub />} />
+          <Route path="/curso"       element={<Curso />} />
           <Route path="/ebook"       element={<Ebook />} />
           <Route path="/descarga"    element={<Descarga />} />
           <Route path="/calculadora" element={<CalculadoraFinanciera />} />
