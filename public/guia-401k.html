@@ -255,245 +255,427 @@
       color: #fff;
     }
 
-    /* ── 3D BOOK ── */
-    .book-wrap {
+    /* ── 3D BOOK SCENE ── */
+    .book-scene {
       flex-shrink: 0;
-      perspective: 1000px;
-    }
-    .book {
-      width: 230px;
-      height: 320px;
       position: relative;
-      transform: perspective(900px) rotateY(-18deg) rotateX(4deg);
-      border-radius: 4px 10px 10px 4px;
+      width: 360px;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Dramatic light rays behind the book */
+    .book-rays {
+      position: absolute;
+      inset: 0;
       overflow: hidden;
-      background: linear-gradient(155deg, #06091a 0%, #0f1545 45%, #1a1060 75%, #0a0e2a 100%);
-      box-shadow:
-        -10px 6px 18px rgba(0,0,0,0.5),
-        25px 35px 70px rgba(0,0,0,0.7),
-        inset 2px 0 8px rgba(255,255,255,0.04);
-      animation: book-float 4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .book-rays::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 500px; height: 400px;
+      background: conic-gradient(
+        from -30deg at 50% 0%,
+        transparent 0deg,
+        rgba(245,197,24,0.05) 8deg,
+        transparent 16deg,
+        rgba(245,197,24,0.04) 24deg,
+        transparent 32deg,
+        rgba(249,115,22,0.04) 40deg,
+        transparent 50deg,
+        rgba(245,197,24,0.05) 58deg,
+        transparent 66deg
+      );
+      filter: blur(3px);
+    }
+    .book-rays::after {
+      content: '';
+      position: absolute;
+      top: 20%; left: 50%;
+      transform: translateX(-50%);
+      width: 320px; height: 280px;
+      background: radial-gradient(ellipse, rgba(245,197,24,0.14) 0%, rgba(249,115,22,0.06) 40%, transparent 70%);
+      filter: blur(18px);
+    }
+
+    /* Shadow on the ground */
+    .book-shadow {
+      position: absolute;
+      bottom: 14px; left: 50%;
+      transform: translateX(-20%) skewX(-25deg);
+      width: 220px; height: 24px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      filter: blur(14px);
+      z-index: 0;
+    }
+
+    /* Float animation wrapper */
+    .book-float {
+      position: relative;
+      z-index: 1;
+      animation: book-float 5s ease-in-out infinite;
     }
     @keyframes book-float {
-      0%,100% { transform: perspective(900px) rotateY(-18deg) rotateX(4deg) translateY(0); }
-      50%      { transform: perspective(900px) rotateY(-18deg) rotateX(4deg) translateY(-8px); }
+      0%,100% { transform: translateY(0) rotate(-1deg); }
+      50%      { transform: translateY(-16px) rotate(-1deg); }
     }
+
+    /* 3D book container */
+    .book-3d {
+      position: relative;
+      transform: perspective(1100px) rotateY(-22deg) rotateX(5deg);
+      filter: drop-shadow(30px 40px 50px rgba(0,0,0,0.85));
+    }
+
+    /* Page edges — right side */
+    .book-pages {
+      position: absolute;
+      top: 6px; right: -10px;
+      width: 12px;
+      height: calc(100% - 12px);
+      border-radius: 0 4px 4px 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        #f2ede0 0px, #f2ede0 1.5px,
+        #e5dccb 1.5px, #e5dccb 2.5px,
+        #ede8d8 2.5px, #ede8d8 3px
+      );
+      transform-origin: left center;
+      transform: scaleX(0.7) rotateY(12deg);
+      box-shadow: 3px 0 8px rgba(0,0,0,0.3);
+    }
+
+    /* The main cover */
+    .book-cover {
+      width: 290px;
+      height: 405px;
+      border-radius: 3px 10px 10px 3px;
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(200deg,
+          #0f0f2e 0%,
+          #13185a 25%,
+          #1c1270 50%,
+          #150e45 75%,
+          #080b22 100%
+        );
+      box-shadow: inset -3px 0 10px rgba(0,0,0,0.4);
+    }
+
+    /* Spine */
     .book-spine {
       position: absolute;
       top: 0; left: 0;
-      width: 14px;
-      height: 100%;
-      background: linear-gradient(180deg, #1a1060 0%, #06091a 100%);
+      width: 24px; height: 100%;
+      background: linear-gradient(to right,
+        #050712 0%,
+        #0c1040 60%,
+        #12155a 100%
+      );
       border-right: 1px solid rgba(255,255,255,0.06);
+      z-index: 2;
     }
-    .book-content {
+    .book-spine-title {
       position: absolute;
-      top: 0; left: 14px; right: 0; bottom: 0;
-      padding: 18px 14px 14px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      white-space: nowrap;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 7px;
+      color: rgba(245,197,24,0.6);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Subtle texture/noise overlay on cover */
+    .book-cover-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 60% at 60% 20%, rgba(60,40,180,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 80% at 20% 80%, rgba(10,5,40,0.4) 0%, transparent 60%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Book content */
+    .book-inner {
+      position: absolute;
+      top: 0; left: 24px; right: 0; bottom: 0;
       display: flex;
       flex-direction: column;
+      z-index: 1;
     }
-    .book-top-bar {
+
+    /* Top bar */
+    .bk-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      padding: 12px 14px 10px;
+      background: rgba(0,0,0,0.35);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .book-logo {
+    .bk-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 3px;
+    }
+    .bk-free {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: linear-gradient(135deg, var(--orange), #ea5800);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 8px;
+      padding: 3px 9px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(249,115,22,0.5);
+    }
+
+    /* Title block */
+    .bk-title-block {
+      padding: 16px 14px 0;
+    }
+    .bk-pre {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .bk-main {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 46px;
+      color: var(--gold);
+      line-height: 0.9;
+      text-shadow:
+        0 0 30px rgba(245,197,24,0.5),
+        0 0 60px rgba(245,197,24,0.2);
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+    .bk-orange-box {
+      background: linear-gradient(135deg, rgba(249,115,22,0.92), rgba(220,80,0,0.92));
+      padding: 6px 10px;
+      border-radius: 5px;
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
       font-size: 10px;
-      color: var(--gold);
-      letter-spacing: 2px;
-    }
-    .book-badge-free {
-      background: var(--orange);
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 8px;
-      padding: 3px 7px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .book-question {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 13px;
-      color: #fff;
-      line-height: 1.2;
-      margin-bottom: 5px;
-    }
-    .book-401 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 30px;
-      color: var(--gold);
-      line-height: 1;
-      text-shadow: 0 0 20px rgba(245,197,24,0.4);
-      margin-bottom: 3px;
-    }
-    .book-subtitle {
-      background: rgba(249,115,22,0.9);
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 8.5px;
       color: #fff;
       text-transform: uppercase;
       line-height: 1.3;
-      margin-bottom: 3px;
       display: inline-block;
+      margin-bottom: 6px;
+      box-shadow: 0 3px 14px rgba(249,115,22,0.45);
     }
-    .book-sub2 {
+    .bk-underlined {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 8px;
-      color: rgba(255,255,255,0.8);
+      font-size: 9px;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      border-bottom: 2.5px solid var(--orange);
+      padding-bottom: 4px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .bk-guide-line {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 9.5px;
+      color: rgba(255,255,255,0.6);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 8px;
-      border-bottom: 2px solid var(--orange);
-      padding-bottom: 2px;
-      display: inline-block;
+      margin-bottom: 2px;
     }
-    .book-visual {
+    .bk-guide-em {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 11px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    /* Visual center */
+    .bk-visual {
       flex: 1;
       position: relative;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
       overflow: hidden;
     }
-    /* Mini chart SVG */
-    .book-chart {
+
+    /* Chart */
+    .bk-chart-svg {
       position: absolute;
-      right: 0; bottom: 10px;
-      width: 80px; height: 60px;
-      opacity: 0.9;
+      right: 4px; bottom: 44px;
+      width: 100px; height: 76px;
     }
+
     /* Coin jar */
-    .book-jar-wrap {
-      position: relative;
-      z-index: 2;
-      margin-bottom: 4px;
-    }
-    .book-jar {
-      width: 52px; height: 58px;
-      background: linear-gradient(180deg, rgba(34,197,94,0.12), rgba(34,197,94,0.04));
-      border: 1.5px solid rgba(34,197,94,0.5);
-      border-radius: 6px 6px 14px 14px;
-      position: relative;
-      overflow: hidden;
-    }
-    .book-jar-fill {
+    .bk-jar-group {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 55%;
-      background: linear-gradient(180deg, rgba(245,197,24,0.35), rgba(245,197,24,0.6));
-      border-radius: 0 0 12px 12px;
-    }
-    .book-jar-label {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 7px;
-      color: #fff;
-      background: rgba(0,0,0,0.5);
-      padding: 2px 5px;
-      border-radius: 4px;
-      white-space: nowrap;
-      z-index: 1;
-    }
-    .book-plant {
-      position: absolute;
-      bottom: 58px; left: 10px;
-      width: 32px;
-    }
-    .plant-stem {
-      width: 2px; height: 24px;
-      background: var(--green);
-      margin: 0 auto;
-      position: relative;
-    }
-    .plant-leaf {
-      position: absolute;
-      width: 12px; height: 7px;
-      background: var(--green);
-      border-radius: 0 50% 0 50%;
-      top: 6px; left: 2px;
-    }
-    .plant-leaf.l {
-      right: 2px; left: auto;
-      border-radius: 50% 0 50% 0;
-      top: 14px;
-    }
-    .book-5-badge {
-      background: var(--orange);
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 9px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      text-align: center;
-      margin-bottom: 6px;
-      line-height: 1.3;
-      position: absolute;
-      left: 0; bottom: 14px;
+      left: 12px; bottom: 42px;
       z-index: 3;
     }
-    .book-steps-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 2px;
-      background: rgba(0,0,0,0.35);
-      border-top: 1.5px solid var(--gold);
-      padding: 5px 6px 3px;
+    .bk-plant-stem {
+      width: 3px; height: 34px;
+      background: linear-gradient(to top, #16a34a, #22c55e);
+      margin: 0 auto;
+      position: relative;
+      border-radius: 2px;
+    }
+    .bk-leaf {
+      position: absolute;
+      border-radius: 0 70% 0 70%;
+      background: var(--green);
+    }
+    .bk-leaf.r { width: 18px; height: 10px; top: 8px; left: 3px; }
+    .bk-leaf.l { width: 16px; height: 9px; top: 18px; right: 3px; left: auto; border-radius: 70% 0 70% 0; }
+    .bk-leaf.t { width: 14px; height: 8px; top: 2px; left: 3px; }
+
+    .bk-jar {
+      width: 64px; height: 72px;
+      background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1.5px solid rgba(34,197,94,0.55);
+      border-radius: 8px 8px 18px 18px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(34,197,94,0.15), inset 0 1px 4px rgba(255,255,255,0.08);
+    }
+    .bk-jar-fill {
       position: absolute;
       bottom: 0; left: 0; right: 0;
+      height: 58%;
+      background: linear-gradient(180deg,
+        rgba(245,197,24,0.25) 0%,
+        rgba(245,197,24,0.55) 60%,
+        rgba(200,150,0,0.7) 100%
+      );
+      border-radius: 0 0 16px 16px;
     }
-    .book-step-item {
+    .bk-jar-coin {
+      position: absolute;
+      width: 14px; height: 14px;
+      background: radial-gradient(circle at 35% 35%, #ffd700, #b8860b);
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    .bk-jar-label {
+      position: absolute;
+      top: 30%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 8.5px;
+      color: #fff;
+      background: rgba(0,0,0,0.55);
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      z-index: 2;
+    }
+
+    /* 5 steps badge */
+    .bk-5badge {
+      position: absolute;
+      right: 10px; bottom: 42px;
+      z-index: 3;
+    }
+    .bk-5badge-inner {
+      background: linear-gradient(135deg, var(--orange), #c94d00);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 11px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 1.2;
+      box-shadow: 0 4px 18px rgba(249,115,22,0.55);
+    }
+    .bk-5badge-num {
+      font-size: 26px;
+      line-height: 1;
+      display: block;
+    }
+    .bk-5badge-sub {
+      font-size: 8px;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      display: block;
+    }
+
+    /* Steps row */
+    .bk-steps {
+      display: flex;
+      background: rgba(0,0,0,0.5);
+      border-top: 1.5px solid rgba(245,197,24,0.6);
+      padding: 6px 8px 5px;
+      gap: 2px;
+    }
+    .bk-step {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
-      flex: 1;
+      gap: 3px;
     }
-    .book-step-icon {
-      width: 16px; height: 16px;
-      border-radius: 4px;
-      background: rgba(245,197,24,0.12);
-      border: 1px solid rgba(245,197,24,0.25);
+    .bk-step-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 7px;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .bk-step-icon {
+      width: 20px; height: 20px;
+      border-radius: 6px;
+      background: rgba(245,197,24,0.1);
+      border: 1px solid rgba(245,197,24,0.3);
       display: flex; align-items: center; justify-content: center;
-      font-size: 8px;
+      font-size: 10px;
     }
-    .book-step-label {
+    .bk-step-lbl {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 5.5px;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.55);
       text-align: center;
       line-height: 1.2;
       text-transform: uppercase;
     }
-    .book-bottom-bar {
-      background: rgba(0,0,0,0.5);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 5px 8px;
+
+    /* Bottom tagline */
+    .bk-tagline {
+      background: linear-gradient(135deg, #0a0820, #120a35);
+      border-top: 1px solid rgba(245,197,24,0.25);
+      padding: 6px 10px;
+      text-align: center;
       font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 7px;
       color: var(--gold);
-      text-align: center;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
     }
 
     /* ── SECTIONS ── */
@@ -885,7 +1067,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
       .hero-inner { grid-template-columns: 1fr; text-align: center; }
-      .book-wrap { display: flex; justify-content: center; order: -1; }
+      .book-scene { order: -1; margin: 0 auto; }
       .hero-stats { justify-content: center; }
       .hero-cta-group { justify-content: center; }
       .hero-sub { margin-left: auto; margin-right: auto; }
@@ -902,15 +1084,16 @@
       .steps-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
       .form-card { padding: 24px 18px; }
       .hero-stats { gap: 16px; }
-      .book { width: 190px; height: 270px; }
       .trust-inner { gap: 20px; }
       .footer-inner { flex-direction: column; text-align: center; }
       .footer-links { justify-content: center; }
+      .book-scene { width: 300px; height: 400px; transform: scale(0.85); transform-origin: center top; }
     }
 
     @media (max-width: 400px) {
       .steps-grid { grid-template-columns: 1fr; }
       .hero-badge { font-size: 10px; }
+      .book-scene { transform: scale(0.72); }
     }
   </style>
 </head>
@@ -979,71 +1162,139 @@
     </div>
 
     <!-- 3D Book -->
-    <div class="book-wrap">
-      <div class="book">
-        <div class="book-spine"></div>
-        <div class="book-content">
-          <div class="book-top-bar">
-            <div class="book-logo">BBER</div>
-            <div class="book-badge-free">Gratis</div>
-          </div>
-          <div class="book-question">¿TIENES UN</div>
-          <div class="book-401">401(k)</div>
-          <div class="book-subtitle">Y NO GENERA DINERO</div>
-          <div class="book-sub2">PORQUE YA NO TRABAJAS EN ESA EMPRESA</div>
-          <div class="book-visual">
-            <!-- Chart SVG -->
-            <svg class="book-chart" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="50" x2="80" y2="50" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-              <line x1="0" y1="35" x2="80" y2="35" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-              <line x1="0" y1="20" x2="80" y2="20" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-              <path d="M 0 55 C 15 52, 25 48, 35 44 S 52 36, 62 25 S 75 10, 80 4" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
-              <polygon points="80,4 74,2 75,10" fill="#22c55e"/>
-              <circle cx="35" cy="44" r="2.5" fill="#22c55e"/>
-              <circle cx="62" cy="25" r="2.5" fill="#22c55e"/>
-            </svg>
-            <!-- Jar -->
-            <div class="book-jar-wrap" style="margin-right: 36px;">
-              <div class="book-plant">
-                <div class="plant-stem">
-                  <div class="plant-leaf"></div>
-                  <div class="plant-leaf l"></div>
+    <div class="book-scene">
+      <!-- Light rays -->
+      <div class="book-rays"></div>
+      <!-- Ground shadow -->
+      <div class="book-shadow"></div>
+
+      <!-- Floating book -->
+      <div class="book-float">
+        <div class="book-3d">
+          <!-- Page edges (right) -->
+          <div class="book-pages"></div>
+
+          <!-- Book cover -->
+          <div class="book-cover">
+            <div class="book-cover-overlay"></div>
+
+            <!-- Spine -->
+            <div class="book-spine">
+              <div class="book-spine-title">BBER · GUÍA 401(k)</div>
+            </div>
+
+            <!-- Inner content -->
+            <div class="book-inner">
+
+              <!-- Top bar -->
+              <div class="bk-top">
+                <div class="bk-logo">BBER</div>
+                <div class="bk-free">★ GRATIS</div>
+              </div>
+
+              <!-- Title block -->
+              <div class="bk-title-block">
+                <div class="bk-pre">¿Tienes un</div>
+                <div class="bk-main">401(k)</div>
+                <div class="bk-orange-box">Y NO GENERA DINERO</div><br>
+                <div class="bk-underlined">PORQUE YA NO TRABAJAS EN ESA EMPRESA?</div>
+                <div class="bk-guide-line">Sigue esta guía:</div>
+                <div class="bk-guide-em">aquí te digo cómo hacerlo</div>
+              </div>
+
+              <!-- Visual area -->
+              <div class="bk-visual">
+                <!-- Growth chart -->
+                <svg class="bk-chart-svg" viewBox="0 0 100 76" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.3"/>
+                      <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <line x1="0" y1="65" x2="100" y2="65" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                  <line x1="0" y1="48" x2="100" y2="48" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                  <line x1="0" y1="31" x2="100" y2="31" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                  <line x1="0" y1="14" x2="100" y2="14" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                  <path d="M 0 70 C 12 68, 22 64, 32 59 S 48 50, 60 40 S 80 20, 100 6 L 100 75 L 0 75 Z" fill="url(#cg)"/>
+                  <path d="M 0 70 C 12 68, 22 64, 32 59 S 48 50, 60 40 S 80 20, 100 6" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+                  <polygon points="100,6 92,3 94,12" fill="#22c55e"/>
+                  <circle cx="32" cy="59" r="3" fill="#22c55e" opacity="0.9"/>
+                  <circle cx="60" cy="40" r="3" fill="#22c55e" opacity="0.9"/>
+                  <circle cx="100" cy="6" r="3.5" fill="#22c55e"/>
+                  <text x="34" y="55" font-size="6" fill="rgba(255,255,255,0.4)" font-family="Montserrat">+$34K</text>
+                  <text x="62" y="36" font-size="6" fill="rgba(255,255,255,0.4)" font-family="Montserrat">+$105K</text>
+                </svg>
+
+                <!-- Coin jar with plant -->
+                <div class="bk-jar-group">
+                  <!-- Plant -->
+                  <div style="display:flex;justify-content:center;margin-bottom:0;">
+                    <div class="bk-plant-stem">
+                      <div class="bk-leaf r"></div>
+                      <div class="bk-leaf l"></div>
+                      <div class="bk-leaf t"></div>
+                    </div>
+                  </div>
+                  <!-- Jar -->
+                  <div class="bk-jar">
+                    <div class="bk-jar-fill"></div>
+                    <div class="bk-jar-coin" style="bottom:44px;left:8px;"></div>
+                    <div class="bk-jar-coin" style="bottom:34px;left:36px;"></div>
+                    <div class="bk-jar-coin" style="bottom:22px;left:20px;"></div>
+                    <div class="bk-jar-coin" style="bottom:10px;left:6px;"></div>
+                    <div class="bk-jar-coin" style="bottom:10px;left:38px;"></div>
+                    <div class="bk-jar-label">401(k)</div>
+                  </div>
+                </div>
+
+                <!-- 5 pasos badge -->
+                <div class="bk-5badge">
+                  <div class="bk-5badge-inner">
+                    <span class="bk-5badge-num">5</span>
+                    <span>EN</span>
+                    <span class="bk-5badge-sub">PASOS<br>FÁCILES</span>
+                  </div>
                 </div>
               </div>
-              <div class="book-jar">
-                <div class="book-jar-fill"></div>
-                <div class="book-jar-label">401(k)</div>
+
+              <!-- Steps row -->
+              <div class="bk-steps">
+                <div class="bk-step">
+                  <div class="bk-step-num">01</div>
+                  <div class="bk-step-icon">🔍</div>
+                  <div class="bk-step-lbl">Ubica tu<br>401(k)</div>
+                </div>
+                <div class="bk-step">
+                  <div class="bk-step-num">02</div>
+                  <div class="bk-step-icon">📋</div>
+                  <div class="bk-step-lbl">Entiende<br>opciones</div>
+                </div>
+                <div class="bk-step">
+                  <div class="bk-step-num">03</div>
+                  <div class="bk-step-icon">⚖️</div>
+                  <div class="bk-step-lbl">Evalúa y<br>compara</div>
+                </div>
+                <div class="bk-step">
+                  <div class="bk-step-num">04</div>
+                  <div class="bk-step-icon">✅</div>
+                  <div class="bk-step-lbl">Toma la<br>decisión</div>
+                </div>
+                <div class="bk-step">
+                  <div class="bk-step-num">05</div>
+                  <div class="bk-step-icon">📈</div>
+                  <div class="bk-step-lbl">Haz crecer<br>tu dinero</div>
+                </div>
               </div>
-            </div>
-            <!-- 5 pasos badge -->
-            <div class="book-5-badge">5<br>PASOS</div>
-          </div>
-        </div>
-        <!-- Steps row at bottom -->
-        <div class="book-steps-row">
-          <div class="book-step-item">
-            <div class="book-step-icon">🔍</div>
-            <div class="book-step-label">Ubica tu 401k</div>
-          </div>
-          <div class="book-step-item">
-            <div class="book-step-icon">📋</div>
-            <div class="book-step-label">Opciones</div>
-          </div>
-          <div class="book-step-item">
-            <div class="book-step-icon">⚖️</div>
-            <div class="book-step-label">Compara</div>
-          </div>
-          <div class="book-step-item">
-            <div class="book-step-icon">✅</div>
-            <div class="book-step-label">Decide</div>
-          </div>
-          <div class="book-step-item">
-            <div class="book-step-icon">📈</div>
-            <div class="book-step-label">Crece</div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+              <!-- Bottom tagline -->
+              <div class="bk-tagline">— Tu futuro financiero no puede esperar —</div>
+
+            </div><!-- /book-inner -->
+          </div><!-- /book-cover -->
+        </div><!-- /book-3d -->
+      </div><!-- /book-float -->
+    </div><!-- /book-scene -->
   </div>
 </section>
 
