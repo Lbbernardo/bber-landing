@@ -950,6 +950,12 @@
     }
 
     /* ── WHAT YOU'LL LEARN ── */
+    .learn-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
     .learn-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1190,7 +1196,8 @@
       .hero-sub { margin-left: auto; margin-right: auto; }
       .pain-grid { grid-template-columns: 1fr 1fr; }
       .step-card { grid-template-columns: 48px 1fr; gap: 14px; padding: 22px 20px; }
-      .learn-grid { grid-template-columns: 1fr; }
+      .learn-layout { grid-template-columns: 1fr; gap: 32px; }
+      .learn-grid { grid-template-columns: 1fr; margin-top: 0; }
     }
 
     @media (max-width: 600px) {
@@ -1200,6 +1207,7 @@
       .step-card { grid-template-columns: 44px 1fr; gap: 12px; padding: 18px 16px; }
       .step-num-circle { width: 44px; height: 44px; font-size: 18px; }
       .step-title { font-size: 16px; }
+      .learn-grid { grid-template-columns: 1fr; }
       .form-card { padding: 24px 18px; }
       .hero-stats { gap: 16px; }
       .trust-inner { gap: 20px; }
@@ -1565,7 +1573,7 @@
 <!-- ══ WHAT YOU'LL LEARN ══ -->
 <section class="section">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+    <div class="learn-layout">
       <div>
         <div class="section-tag">En esta guía aprenderás</div>
         <h2 class="section-title">Todo lo que necesitas<br>saber en un solo lugar</h2>
