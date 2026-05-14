@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Hub from './pages/Hub'
 import Curso from './pages/Curso'
 import Ebook from './pages/Ebook'
+import GuiaRetiro from './pages/GuiaRetiro'
 import Descarga from './pages/Descarga'
 import CalculadoraFinanciera from './pages/CalculadoraFinanciera'
 import './index.css'
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/"            element={<Hub />} />
           <Route path="/curso"       element={<Curso />} />
           <Route path="/ebook"       element={<Ebook />} />
+          <Route path="/guia-retiro" element={<GuiaRetiro />} />
           <Route path="/descarga"    element={<Descarga />} />
           <Route path="/calculadora" element={<CalculadoraFinanciera />} />
           <Route path="/admin"       element={<AdminLogin />} />
