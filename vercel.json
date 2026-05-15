@@ -5,6 +5,7 @@
   "rewrites": [
     { "source": "/guia-401k",   "destination": "/guia-401k.html" },
     { "source": "/ebook-retiro","destination": "/ebook.html" },
+    { "source": "/plan-retiro", "destination": "/plan-retiro.html" },
     { "source": "/(.*)",        "destination": "/index.html" }
   ],
   "headers": [

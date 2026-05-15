@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Retiro No Se Improvisa — Guía Completa | Avanza$ Finanzas</title>
+  <meta name="description" content="Guía completa para latinos en USA: cómo planear tu retiro paso a paso usando las herramientas financieras correctas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '935893702261499');
+  fbq('track', 'PageView');
+  </script>
+  <style>
+    :root {
+      --green: #22C55E;
+      --green-dark: #16A34A;
+      --green-deep: #14532D;
+      --dark: #0D0D0D;
+      --dark2: #111827;
+      --muted: #6B7280;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: #F3F4F6;
+      color: #1a1a1a;
+      line-height: 1.7;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Print / action bar ── */
+    .print-bar {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      display: flex;
+      gap: 10px;
+    }
+    .print-bar button, .print-bar a {
+      background: var(--green-dark);
+      color: #fff;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 30px rgba(22,163,74,0.4);
+      transition: transform 0.2s;
+    }
+    .print-bar button:hover, .print-bar a:hover { transform: translateY(-2px); }
+
+    @media print {
+      .print-bar { display: none; }
+      body { background: #fff; }
+      .page { margin: 0; border-radius: 0; box-shadow: none; break-after: page; }
+    }
+
+    /* ── Document pages ── */
+    .page {
+      max-width: 800px;
+      margin: 0 auto 32px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.09);
+      overflow: hidden;
+    }
+
+    /* ── COVER ── */
+    .cover {
+      background: linear-gradient(145deg, #071810 0%, #0d2a18 40%, #071810 100%);
+      min-height: 820px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='%23ffffff06' stroke-width='1'/%3E%3C/svg%3E");
+    }
+    .cover-top-bar {
+      height: 6px;
+      background: linear-gradient(90deg, #16A34A 0%, #22C55E 50%, #4ADE80 100%);
+    }
+    .cover-inner {
+      position: relative;
+      z-index: 1;
+      padding: 52px 60px 60px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .cover-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 60px;
+    }
+    .cover-logo-icon {
+      width: 44px; height: 44px;
+      background: var(--green-dark);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900; font-size: 18px; color: #fff;
+    }
+    .cover-logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900; font-size: 20px; color: #fff; letter-spacing: -0.5px;
+    }
+    .cover-logo-text span { color: var(--green); }
+
+    .cover-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.35);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      width: fit-content;
+    }
+
+    .cover h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 50px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 22px;
+    }
+    .cover h1 .green { color: var(--green); }
+
+    .cover-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 44px;
+    }
+    .cover-sub strong { color: rgba(255,255,255,0.85); font-weight: 700; }
+
+    .cover-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 44px;
+    }
+    .cover-pillar {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .cover-pillar-icon {
+      width: 36px; height: 36px;
+      background: rgba(34,197,94,0.15);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+    .cover-pillar-title { font-weight: 800; font-size: 13px; color: var(--green); margin-bottom: 2px; }
+    .cover-pillar-sub { font-size: 11.5px; color: rgba(255,255,255,0.45); line-height: 1.4; }
+
+    .cover-bottom {
+      display: flex;
+      gap: 0;
+      background: var(--green-dark);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: auto;
+    }
+    .cover-bottom-item {
+      flex: 1;
+      padding: 16px 18px;
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+    .cover-bottom-item:last-child { border-right: none; }
+    .cover-bottom-label {
+      font-weight: 800;
+      font-size: 12px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+    .cover-bottom-desc { font-size: 11px; color: rgba(255,255,255,0.65); line-height: 1.4; }
+
+    .cover-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+    }
+
+    /* ── Page content ── */
+    .page-inner { padding: 52px 60px; }
+
+    /* Chapter header */
+    .chapter-header {
+      border-bottom: 2px solid #F0F0F0;
+      padding-bottom: 28px;
+      margin-bottom: 36px;
+    }
+    .chapter-num {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+    .chapter-header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 30px;
+      font-weight: 900;
+      color: #071810;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+    .chapter-intro {
+      font-size: 16px;
+      color: #4B5563;
+      line-height: 1.8;
+      margin: 20px 0 32px;
+      border-left: 3px solid var(--green-dark);
+      padding-left: 20px;
+    }
+
+    .section-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #071810;
+      margin: 32px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #EFEFEF;
+      margin-left: 8px;
+    }
+
+    p { margin-bottom: 14px; color: #374151; }
+
+    /* Callout boxes */
+    .box {
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .box-green {
+      background: rgba(34,197,94,0.06);
+      border: 1px solid rgba(34,197,94,0.25);
+    }
+    .box-dark {
+      background: #071810;
+      border: 1px solid rgba(34,197,94,0.2);
+    }
+    .box-yellow {
+      background: rgba(250,204,21,0.06);
+      border: 1px solid rgba(250,204,21,0.35);
+    }
+    .box-red {
+      background: rgba(239,68,68,0.05);
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+    .box-blue {
+      background: rgba(59,130,246,0.05);
+      border: 1px solid rgba(59,130,246,0.2);
+    }
+    .box-title {
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .box-green .box-title { color: var(--green-dark); }
+    .box-dark .box-title { color: var(--green); }
+    .box-dark p, .box-dark li { color: rgba(255,255,255,0.75) !important; }
+    .box-dark ul li::before { color: var(--green) !important; }
+    .box-yellow .box-title { color: #92400E; }
+    .box-red .box-title { color: #DC2626; }
+    .box-blue .box-title { color: #1D4ED8; }
+
+    /* Lists */
+    ul, ol { padding-left: 0; list-style: none; margin-bottom: 14px; }
+    ul li, ol li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 0;
+      color: #374151;
+      font-size: 14.5px;
+    }
+    ul li::before {
+      content: '→';
+      color: var(--green-dark);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    ol { counter-reset: item; }
+    ol li { counter-increment: item; }
+    ol li::before {
+      content: counter(item);
+      background: var(--green-dark);
+      color: #fff;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    th {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    td { padding: 10px 14px; border-bottom: 1px solid #F0F0F0; color: #374151; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #F9FDF9; }
+
+    /* Takeaways */
+    .takeaways {
+      background: linear-gradient(135deg, #071810, #0d2a18);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-top: 32px;
+    }
+    .takeaways-title {
+      color: var(--green);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+    .takeaways ul li { color: rgba(255,255,255,0.8); }
+    .takeaways ul li::before { color: var(--green); }
+
+    /* Exercise / worksheet */
+    .exercise {
+      background: #F0FDF4;
+      border: 2px solid var(--green);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 24px 0;
+    }
+    .exercise-title {
+      font-weight: 900;
+      color: var(--green-deep);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+    }
+    .exercise p { color: #166534; }
+    .exercise ul li::before { color: var(--green-dark); }
+    .exercise ul li { color: #166534; }
+
+    /* TOC items */
+    .toc-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #F5F5F5;
+    }
+    .toc-num {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, #16A34A, #22C55E);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: #fff;
+      flex-shrink: 0;
+    }
+    .toc-title { font-weight: 700; color: #071810; font-size: 15px; }
+    .toc-sub { font-size: 12px; color: #9CA3AF; margin-top: 2px; }
+
+    /* Comparison cards */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .compare-card {
+      border-radius: 12px;
+      padding: 20px;
+      border: 1.5px solid #E5E7EB;
+    }
+    .compare-card.highlight {
+      border-color: var(--green);
+      background: rgba(34,197,94,0.04);
+    }
+    .compare-card-title {
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: #071810;
+    }
+    .compare-card.highlight .compare-card-title { color: var(--green-dark); }
+    .compare-card-badge {
+      display: inline-block;
+      background: var(--green-dark);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .compare-card p { font-size: 13px; margin-bottom: 8px; }
+    .compare-card ul li { font-size: 13px; }
+
+    /* Número grande destacado */
+    .big-number {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin: 8px 0 16px;
+    }
+    .big-number .num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--green-dark);
+      line-height: 1;
+    }
+    .big-number .unit { font-size: 18px; font-weight: 700; color: var(--muted); }
+
+    /* Worksheet fields */
+    .ws-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px dashed #D1FAE5;
+    }
+    .ws-label { flex: 1; font-size: 14px; color: #166534; font-weight: 600; }
+    .ws-field {
+      width: 140px;
+      border: none;
+      border-bottom: 2px solid var(--green-dark);
+      background: transparent;
+      text-align: right;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--green-deep);
+      padding: 4px 8px;
+      outline: none;
+    }
+
+    /* Final CTA page */
+    .cta-page {
+      background: linear-gradient(145deg, #071810 0%, #0d2a18 50%, #071810 100%);
+      padding: 72px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='%23ffffff05' stroke-width='1'/%3E%3C/svg%3E");
+    }
+    .cta-page > * { position: relative; z-index: 1; }
+    .cta-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.3);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .cta-page h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .cta-page h2 .green { color: var(--green); }
+    .cta-page p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+      margin: 0 auto 40px;
+    }
+    .cta-steps {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+    .cta-step { text-align: center; max-width: 140px; }
+    .cta-step-num {
+      width: 44px; height: 44px;
+      background: rgba(34,197,94,0.2);
+      border: 2px solid rgba(34,197,94,0.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 18px; color: var(--green);
+      margin: 0 auto 10px;
+    }
+    .cta-step p { font-size: 13px; color: rgba(255,255,255,0.55); margin: 0; }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green-dark);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 16px 36px;
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(22,163,74,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 50px rgba(22,163,74,0.6); }
+    .cta-disclaimer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.28);
+    }
+
+    /* Bonus box */
+    .bonus-box {
+      background: linear-gradient(135deg, #071810, #0d2a18);
+      border: 2px solid rgba(34,197,94,0.35);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin: 28px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .bonus-badge {
+      position: absolute;
+      top: 18px; right: 20px;
+      background: var(--green-dark);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .bonus-box h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .bonus-box p { color: rgba(255,255,255,0.65); font-size: 14px; margin-bottom: 16px; }
+    .bonus-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .bonus-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bonus-item::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=935893702261499&ev=PageView&noscript=1" /></noscript>
+
+<!-- ─── PORTADA ─── -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-top-bar"></div>
+    <div class="cover-glow" style="width:600px;height:600px;background:rgba(34,197,94,0.08);top:-200px;right:-200px;"></div>
+    <div class="cover-glow" style="width:400px;height:400px;background:rgba(34,197,94,0.05);bottom:-100px;left:-100px;"></div>
+    <div class="cover-inner">
+      <div class="cover-logo">
+        <div class="cover-logo-icon">A$</div>
+        <div class="cover-logo-text">AVANZA<span>$</span> FINANZAS</div>
+      </div>
+
+      <div>
+        <div class="cover-tag">📗 Guía Completa · Para Latinos en USA</div>
+        <h1>EL RETIRO<br>NO SE <span class="green">IMPROVISA.</span><br>SE EMPIEZA CON<br><span class="green">UN PLAN SIMPLE.</span></h1>
+        <p class="cover-sub">
+          <strong>Guía completa para usar herramientas financieras</strong><br>
+          y construir tu futuro con confianza — sin tecnicismos,<br>sin enredos. Solo lo que necesitas saber.
+        </p>
+
+        <div class="cover-pillars">
+          <div class="cover-pillar">
+            <div class="cover-pillar-icon">🎯</div>
+            <div>
+              <div class="cover-pillar-title">Define Tu Meta</div>
+              <div class="cover-pillar-sub">Descubre cuánto necesitas y cuándo quieres retirarte</div>
+            </div>
+          </div>
+          <div class="cover-pillar">
+            <div class="cover-pillar-icon">🧰</div>
+            <div>
+              <div class="cover-pillar-title">Herramientas Correctas</div>
+              <div class="cover-pillar-sub">401(k), IRA, IUL — cuál te conviene más</div>
+            </div>
+          </div>
+          <div class="cover-pillar">
+            <div class="cover-pillar-icon">📈</div>
+            <div>
+              <div class="cover-pillar-title">Haz Crecer Tu Dinero</div>
+              <div class="cover-pillar-sub">Estrategias simples para multiplicar tu futuro</div>
+            </div>
+          </div>
+          <div class="cover-pillar">
+            <div class="cover-pillar-icon">🛡️</div>
+            <div>
+              <div class="cover-pillar-title">Protégete Hoy</div>
+              <div class="cover-pillar-sub">Tu tranquilidad también es parte del plan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-bottom">
+        <div class="cover-bottom-item">
+          <div class="cover-bottom-label">👨‍👩‍👧 Para Latinos en USA</div>
+          <div class="cover-bottom-desc">Contenido claro, práctico y 100% aplicable</div>
+        </div>
+        <div class="cover-bottom-item">
+          <div class="cover-bottom-label">💡 Sin Complicaciones</div>
+          <div class="cover-bottom-desc">Sin tecnicismos. Solo lo que necesitas saber.</div>
+        </div>
+        <div class="cover-bottom-item">
+          <div class="cover-bottom-label">🚀 Pequeños Pasos</div>
+          <div class="cover-bottom-desc">Empieza hoy y construye el retiro que mereces.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TABLA DE CONTENIDO ─── -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Índice</div>
+      <h2>Lo que vas a aprender en esta guía</h2>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-num">1</div>
+      <div>
+        <div class="toc-title">Por qué el retiro no se improvisa</div>
+        <div class="toc-sub">La realidad de los latinos en USA y los 3 errores más comunes</div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">2</div>
+      <div>
+        <div class="toc-title">Define tu meta de retiro</div>
+        <div class="toc-sub">Cuánto necesitas, a qué edad, y cómo calcularlo en minutos</div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">3</div>
+      <div>
+        <div class="toc-title">Las herramientas financieras correctas</div>
+        <div class="toc-sub">401(k), IRA, Roth IRA, IUL — explicado en español sin rodeos</div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">4</div>
+      <div>
+        <div class="toc-title">Haz crecer tu dinero</div>
+        <div class="toc-sub">Estrategias de crecimiento sin arriesgar lo que ya tienes</div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">5</div>
+      <div>
+        <div class="toc-title">Protégete hoy</div>
+        <div class="toc-sub">Seguros, IUL y por qué la protección es parte del plan</div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">★</div>
+      <div>
+        <div class="toc-title">Bonus: Tu Plan de Retiro en Una Hoja</div>
+        <div class="toc-sub">Plantilla lista para llenar + recursos exclusivos</div>
+      </div>
+    </div>
+
+    <div class="box box-green" style="margin-top:32px;">
+      <div class="box-title">📌 Cómo usar esta guía</div>
+      <p style="margin:0;">Lee un capítulo a la vez. Al final de cada uno hay un ejercicio de 5 minutos. Si lo completas, ya tienes más planeado tu retiro que el 80% de los latinos en USA. Empieza hoy.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CAPÍTULO 1 ─── -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Capítulo 1</div>
+      <h2>Por qué el retiro no se improvisa</h2>
+    </div>
+    <p class="chapter-intro">
+      Más del 60% de los latinos en USA no tiene ningún tipo de cuenta de retiro. No es por falta de trabajo — es por falta de información en nuestro idioma, adaptada a nuestra realidad.
+    </p>
+
+    <div class="section-title">La realidad que nadie te cuenta</div>
+    <p>El Seguro Social no va a ser suficiente. En promedio, los beneficios de Social Security reemplazan solo el 40% del salario previo a la jubilación. Si ganas $3,000 al mes hoy, a los 67 recibirías alrededor de $1,200 — antes de impuestos.</p>
+    <p>Para mantener tu estilo de vida actual en el retiro, necesitas entre el 70% y el 85% de tu ingreso actual. El resto tiene que venir de algún lado: inversiones, cuentas de retiro, o un negocio. Si no empiezas hoy, ese "algún lado" simplemente no va a existir.</p>
+
+    <div class="section-title">Los 3 errores más comunes</div>
+    <ol>
+      <li>
+        <div>
+          <strong>Esperar a "tener más dinero."</strong> El tiempo es el activo más valioso en las finanzas. $100 al mes a los 30 años valen mucho más que $200 al mes a los 45. No hay monto perfecto — hay un momento perfecto, y ese momento es ahora.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Depender solo del patrón.</strong> Muchos latinos trabajan en empleos donde no hay 401(k) o el empleador no contribuye. Si tu trabajo no tiene plan de retiro, tú eres el único responsable de crearlo.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Guardar dinero "en efectivo" o en cuenta de ahorro normal.</strong> Una cuenta de ahorro tradicional paga 0.1% de interés al año. La inflación come el 3-4% anual. Cada año que tu dinero está en una cuenta de banco ordinaria, estás perdiendo poder adquisitivo.
+        </div>
+      </li>
+    </ol>
+
+    <div class="box box-yellow">
+      <div class="box-title">⚠️ El costo de esperar 10 años</div>
+      <table>
+        <thead>
+          <tr><th>Empieza a los…</th><th>$200/mes hasta los 65</th><th>Total acumulado (~7% anual)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>30 años</td><td>$84,000 aportados</td><td><strong>~$525,000</strong></td></tr>
+          <tr><td>40 años</td><td>$60,000 aportados</td><td><strong>~$243,000</strong></td></tr>
+          <tr><td>50 años</td><td>$36,000 aportados</td><td><strong>~$97,000</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:#92400E;margin:8px 0 0;">Aportando lo mismo mensualmente, esperar 10 años puede costarte más de $280,000 en tu retiro.</p>
+    </div>
+
+    <div class="box box-dark">
+      <div class="box-title">💬 Frase para recordar</div>
+      <p style="font-size:17px;font-style:italic;color:rgba(255,255,255,0.9);margin:0;">"El mejor momento para planear tu retiro fue hace 10 años. El segundo mejor momento es hoy."</p>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">✏️ Ejercicio 1 — Tu punto de partida (5 minutos)</div>
+      <p>Responde honestamente estas preguntas. No hay respuestas malas — solo puntos de partida:</p>
+      <ul>
+        <li>¿Tienes alguna cuenta de retiro activa hoy? (401k, IRA, etc.) ____________________</li>
+        <li>¿Cuánto tienes ahorrado actualmente para el retiro? $ ____________________</li>
+        <li>¿A qué edad te gustaría retirarte? ____________________</li>
+        <li>¿Tienes deudas de tarjeta de crédito con interés mayor al 15%? ____________________</li>
+      </ul>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">📌 Lo que te llevas del Capítulo 1</div>
+      <ul>
+        <li>El Social Security solo cubre el 40% de lo que necesitas — el resto es tu responsabilidad.</li>
+        <li>El tiempo es más poderoso que el monto. $100 hoy valen más que $300 en 10 años.</li>
+        <li>Guardar en banco sin inversión = perder dinero lentamente por inflación.</li>
+        <li>No necesitas ser rico para empezar. Necesitas empezar para ser libre.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CAPÍTULO 2 ─── -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Capítulo 2</div>
+      <h2>Define tu meta de retiro</h2>
+    </div>
+    <p class="chapter-intro">
+      Antes de elegir cualquier herramienta financiera, necesitas saber a dónde vas. Sin un número claro, solo estás adivinando. Este capítulo te enseña a calcular tu meta en menos de 10 minutos.
+    </p>
+
+    <div class="section-title">Paso 1 — ¿Cuánto necesitas al mes en el retiro?</div>
+    <p>Una regla práctica: <strong>planea vivir con el 80% de tu ingreso actual</strong>. Cuando te retiras, desaparecen algunos gastos (la hipoteca, la guardería, el transporte al trabajo) pero aparecen otros (salud, viajes, más tiempo libre que cuesta dinero).</p>
+
+    <div class="exercise">
+      <div class="exercise-title">🧮 Calculadora: Tu Ingreso Mensual en el Retiro</div>
+      <div class="ws-row">
+        <div class="ws-label">Mi ingreso mensual neto hoy</div>
+        <input class="ws-field" placeholder="$___" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">× 0.80 (80% para el retiro)</div>
+        <input class="ws-field" placeholder="$___" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">– Beneficio estimado Social Security*</div>
+        <input class="ws-field" placeholder="$___" type="text" />
+      </div>
+      <div class="ws-row" style="border-bottom:2px solid #16A34A;">
+        <div class="ws-label" style="font-weight:800;color:#14532D;">= Lo que necesito de mis inversiones/mes</div>
+        <input class="ws-field" style="font-weight:900;color:#14532D;" placeholder="$___" type="text" />
+      </div>
+      <p style="font-size:12px;margin-top:8px;">*Revisa tu estimado en ssa.gov/myaccount — son 5 minutos y es gratis.</p>
+    </div>
+
+    <div class="section-title">Paso 2 — ¿Cuánto necesitas ahorrar en total?</div>
+    <p>Usa la <strong>Regla del 25</strong>: multiplica el ingreso anual que necesitas de tus inversiones × 25. Este es el monto total que necesitas tener ahorrado al retirarte para que tu dinero dure 30+ años (retirando el 4% por año).</p>
+
+    <div class="box box-green">
+      <div class="box-title">📐 La Regla del 25 en acción</div>
+      <table>
+        <thead>
+          <tr><th>Necesito al mes de inversiones</th><th>× 12 meses</th><th>× 25 (Regla del 25)</th><th>Meta total</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>$1,000/mes</td><td>$12,000/año</td><td>× 25</td><td><strong>$300,000</strong></td></tr>
+          <tr><td>$2,000/mes</td><td>$24,000/año</td><td>× 25</td><td><strong>$600,000</strong></td></tr>
+          <tr><td>$3,000/mes</td><td>$36,000/año</td><td>× 25</td><td><strong>$900,000</strong></td></tr>
+          <tr><td>$4,000/mes</td><td>$48,000/año</td><td>× 25</td><td><strong>$1,200,000</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-title">Paso 3 — ¿Cuánto necesitas ahorrar por mes?</div>
+    <p>Ya tienes tu meta total. Ahora calcula cuánto necesitas ahorrar mensualmente. Esto depende de cuántos años te quedan y qué rendimiento esperas de tus inversiones.</p>
+
+    <div class="box box-blue">
+      <div class="box-title">📊 Cuánto ahorrar según tu edad (rendimiento del 7% anual)</div>
+      <table>
+        <thead>
+          <tr><th>Años para retirarte</th><th>Meta $300K</th><th>Meta $600K</th><th>Meta $900K</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>35 años (retiro a ~67)</td><td>$230/mes</td><td>$460/mes</td><td>$690/mes</td></tr>
+          <tr><td>25 años (retiro a ~57)</td><td>$420/mes</td><td>$840/mes</td><td>$1,260/mes</td></tr>
+          <tr><td>20 años (retiro a ~52)</td><td>$625/mes</td><td>$1,250/mes</td><td>$1,875/mes</td></tr>
+          <tr><td>15 años (retiro a ~47)</td><td>$1,000/mes</td><td>$2,000/mes</td><td>$3,000/mes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">✏️ Ejercicio 2 — Tu Meta Personal (5 minutos)</div>
+      <div class="ws-row">
+        <div class="ws-label">Ingreso mensual que necesito en retiro</div>
+        <input class="ws-field" placeholder="$___" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">Mi meta total de ahorro (× 25)</div>
+        <input class="ws-field" placeholder="$___" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">Años hasta mi retiro</div>
+        <input class="ws-field" placeholder="___" type="text" />
+      </div>
+      <div class="ws-row" style="border-bottom:2px solid #16A34A;">
+        <div class="ws-label" style="font-weight:800;color:#14532D;">Necesito ahorrar por mes</div>
+        <input class="ws-field" style="font-weight:900;color:#14532D;" placeholder="$___" type="text" />
+      </div>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">📌 Lo que te llevas del Capítulo 2</div>
+      <ul>
+        <li>Tu meta de retiro no es un número inventado — se calcula con tu ingreso actual × 25.</li>
+        <li>El Social Security cubre solo una parte. El resto lo construyes tú.</li>
+        <li>Saber tu número elimina la ansiedad. Ya no es un misterio — es un plan.</li>
+        <li>Revisa ssa.gov para ver tu estimado real de Social Security en minutos.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CAPÍTULO 3 ─── -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Capítulo 3</div>
+      <h2>Las herramientas financieras correctas</h2>
+    </div>
+    <p class="chapter-intro">
+      No hay una sola herramienta perfecta para todos. Hay una combinación correcta para ti, según tu ingreso, tu edad y tu situación. Aquí te explico las principales — sin lenguaje de banco.
+    </p>
+
+    <div class="section-title">El 401(k) — La base si tienes empleo</div>
+    <p>El 401(k) es una cuenta de retiro que ofrece tu empleador. Tú contribuyes antes de pagar impuestos, lo que reduce tu ingreso gravable hoy. El dinero crece libre de impuestos hasta que lo retiras.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-card-title">✅ Ventajas del 401(k)</div>
+        <ul>
+          <li>Reduces impuestos ahora mismo</li>
+          <li>Muchos empleadores "matchean" tu aporte (dinero gratis)</li>
+          <li>Límite alto: hasta $23,000/año en 2024</li>
+          <li>Crece con interés compuesto, diferido de impuestos</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-title">⚠️ Limitaciones del 401(k)</div>
+        <ul>
+          <li>Pagas impuestos cuando retiras</li>
+          <li>Penalidad del 10% si retiras antes de los 59½</li>
+          <li>Depende de que tu empleador lo ofrezca</li>
+          <li>Inversiones limitadas a las que ofrece el plan</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box box-green">
+      <div class="box-title">💡 Regla de oro del 401(k)</div>
+      <p style="margin:0;">Si tu empleador iguala tus aportes, <strong>contribuye al menos hasta el límite del match</strong>. Si tu empresa iguala el 3% de tu salario y tú no contribuyes ese 3%, estás dejando dinero gratis sobre la mesa.</p>
+    </div>
+
+    <div class="section-title">La IRA y Roth IRA — Para todos</div>
+    <p>Una IRA (Individual Retirement Account) es una cuenta de retiro que abres tú mismo, independientemente de tu empleador. Hay dos versiones:</p>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-card-title">IRA Tradicional</div>
+        <ul>
+          <li>Aportes pueden ser deducibles de impuestos</li>
+          <li>Crece libre de impuestos</li>
+          <li>Pagas impuestos al retirar el dinero</li>
+          <li>Ideal si hoy estás en un tramo fiscal alto</li>
+        </ul>
+      </div>
+      <div class="compare-card highlight">
+        <div class="compare-card-badge">Recomendado para latinos</div>
+        <div class="compare-card-title">Roth IRA</div>
+        <ul>
+          <li>Contribuyes con dinero ya gravado</li>
+          <li>Crece totalmente libre de impuestos</li>
+          <li>Retiras sin pagar impuestos en el futuro</li>
+          <li>Ideal si esperas que tus impuestos suban</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box box-yellow">
+      <div class="box-title">📋 Límites 2024 para IRA / Roth IRA</div>
+      <ul>
+        <li>Puedes aportar hasta <strong>$7,000 al año</strong> (o $8,000 si tienes 50+ años)</li>
+        <li>Para Roth IRA: ingreso máximo $146,000 (soltero) / $230,000 (casado)</li>
+        <li>Puedes tener 401(k) Y IRA al mismo tiempo — son cuentas independientes</li>
+      </ul>
+    </div>
+
+    <div class="section-title">El IUL — La herramienta que los bancos no te ofrecen</div>
+    <p>El IUL (Indexed Universal Life) es un seguro de vida permanente con un componente de ahorro que crece vinculado al índice del mercado (como el S&P 500), pero con una protección: <strong>no puedes perder dinero cuando el mercado cae</strong>.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card highlight">
+        <div class="compare-card-badge">Ventaja única</div>
+        <div class="compare-card-title">¿Por qué el IUL?</div>
+        <ul>
+          <li>Piso del 0%: si el mercado cae, no pierdes</li>
+          <li>Techo del 10-12%: participas en el crecimiento</li>
+          <li>Retiros libres de impuestos en el retiro</li>
+          <li>Incluye seguro de vida — proteges a tu familia hoy</li>
+          <li>No tiene límites de aportación como el 401(k) o IRA</li>
+          <li>No aparece en el FAFSA para la universidad de tus hijos</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-title">¿Para quién es el IUL?</div>
+        <ul>
+          <li>Personas que ya maximizan su 401(k) y buscan más</li>
+          <li>Quienes quieren crecimiento sin riesgo de mercado</li>
+          <li>Familias que necesitan seguro de vida permanente</li>
+          <li>Quienes quieren retiros sin impacto fiscal en el retiro</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box box-dark">
+      <div class="box-title">📊 Comparación rápida</div>
+      <table>
+        <thead>
+          <tr><th>Característica</th><th>401(k)</th><th>Roth IRA</th><th>IUL</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Límite de aportación</td><td>$23,000/año</td><td>$7,000/año</td><td>Sin límite</td></tr>
+          <tr><td>Impuestos al retirar</td><td>Sí</td><td>No</td><td>No</td></tr>
+          <tr><td>Riesgo de mercado</td><td>Sí</td><td>Sí</td><td>No (piso 0%)</td></tr>
+          <tr><td>Seguro de vida incluido</td><td>No</td><td>No</td><td>Sí</td></tr>
+          <tr><td>Acceso antes de 59½</td><td>Penalidad</td><td>Penalidad parcial</td><td>Sí (vía préstamo)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">📌 Lo que te llevas del Capítulo 3</div>
+      <ul>
+        <li>Empieza con el 401(k) hasta el límite del match de tu empleador.</li>
+        <li>Abre una Roth IRA para tener retiros libres de impuestos en el futuro.</li>
+        <li>Considera el IUL si quieres crecimiento sin riesgo y seguro de vida incluido.</li>
+        <li>Lo ideal es combinar 2 o 3 herramientas — no poner todos los huevos en una canasta.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CAPÍTULO 4 ─── -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Capítulo 4</div>
+      <h2>Haz crecer tu dinero</h2>
+    </div>
+    <p class="chapter-intro">
+      El secreto de las finanzas personales no es ganar más — es hacer que el dinero trabaje para ti. El interés compuesto es la herramienta más poderosa del mundo, y está disponible para cualquiera que empiece hoy.
+    </p>
+
+    <div class="section-title">El poder del interés compuesto</div>
+    <p>Einstein llamó al interés compuesto "la octava maravilla del mundo." La razón es simple: tu dinero genera rendimientos, y esos rendimientos también generan rendimientos. Con el tiempo, el crecimiento se acelera de forma exponencial.</p>
+
+    <div class="box box-green">
+      <div class="box-title">📈 $200 al mes, 30 años, al 7% anual</div>
+      <div class="big-number">
+        <span class="num">$243,000</span>
+        <span class="unit">total acumulado</span>
+      </div>
+      <p style="margin:0;">De ese total, solo aportaste $72,000 de tu bolsillo. Los otros <strong>$171,000 los generó el interés compuesto</strong> — sin que hicieras nada extra. Así de poderoso es el tiempo + la consistencia.</p>
+    </div>
+
+    <div class="section-title">Las 3 estrategias más efectivas</div>
+
+    <ol>
+      <li>
+        <div>
+          <strong>Automatiza tus aportaciones.</strong> Configura una transferencia automática el día de tu pago. Si el dinero nunca "pasa" por tu cuenta corriente, no lo gastas. Trata tu ahorro de retiro como un gasto fijo, no como lo que sobra.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Diversifica entre activos.</strong> No pongas todo en un solo lugar. Una combinación de acciones (mayor crecimiento, más riesgo) y bonos (menor crecimiento, más estabilidad) ajustada a tu edad te protege de mercados volátiles.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Reinvierte los dividendos.</strong> Si tus inversiones generan dividendos, reinviértelos automáticamente. Cada dividendo reinvertido compra más acciones, que generan más dividendos. El ciclo de crecimiento se acelera sólo.
+        </div>
+      </li>
+    </ol>
+
+    <div class="section-title">La regla de asignación por edad</div>
+    <p>Una fórmula simple para balancear riesgo: <strong>100 menos tu edad = % en acciones</strong>. A los 35 años: 65% en acciones, 35% en bonos/estables. A los 55 años: 45% en acciones, 55% en estables. Ajusta según tu tolerancia al riesgo.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-card-title">30-40 años: Modo Crecimiento</div>
+        <ul>
+          <li>60-80% en fondos de acciones (S&P 500, índices)</li>
+          <li>20-40% en bonos o activos más estables</li>
+          <li>Tiempo suficiente para recuperar caídas del mercado</li>
+          <li>Enfócate en aportar consistentemente</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-title">50-60 años: Modo Protección</div>
+        <ul>
+          <li>40-50% en acciones (reduciendo exposición gradualmente)</li>
+          <li>50-60% en bonos, anualidades y cuentas estables</li>
+          <li>Considera el IUL para eliminar el riesgo de mercado</li>
+          <li>Empieza a planificar los retiros estratégicamente</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box box-dark">
+      <div class="box-title">🔑 El hábito más importante</div>
+      <p>No es el monto lo que cambia tu futuro — es la <strong>consistencia</strong>. Alguien que ahorra $150 al mes sin faltar durante 30 años llega más lejos que alguien que ahorra $500 un mes y nada los siguientes cuatro. La constancia gana. Siempre.</p>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">✏️ Ejercicio 3 — Tu Plan de Ahorro Mensual</div>
+      <div class="ws-row">
+        <div class="ws-label">¿Cuánto puedo automatizar HOY hacia mi retiro?</div>
+        <input class="ws-field" placeholder="$___/mes" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">¿En qué cuenta voy a poner ese dinero?</div>
+        <input class="ws-field" placeholder="401k / IRA / IUL" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">¿Qué día del mes programo la transferencia?</div>
+        <input class="ws-field" placeholder="Día ___" type="text" />
+      </div>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">📌 Lo que te llevas del Capítulo 4</div>
+      <ul>
+        <li>El interés compuesto multiplica tu dinero sin esfuerzo adicional — solo necesita tiempo.</li>
+        <li>Automatizar el ahorro elimina la tentación de gastarlo.</li>
+        <li>Diversifica según tu edad: más agresivo joven, más conservador cerca del retiro.</li>
+        <li>No importa el monto inicial — importa la consistencia mensual.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CAPÍTULO 5 ─── -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">Capítulo 5</div>
+      <h2>Protégete hoy</h2>
+    </div>
+    <p class="chapter-intro">
+      Construir tu retiro toma décadas. Perder todo lo que construiste puede tomar un día. La protección no es el opuesto del crecimiento — es la base que lo hace posible.
+    </p>
+
+    <div class="section-title">¿Por qué la protección es parte del plan?</div>
+    <p>Imagina que llevas 15 años ahorrando para tu retiro, tienes $180,000 acumulados, y de repente ocurre algo inesperado: una enfermedad grave, un accidente, o tu fallecimiento. Sin protección, todo ese trabajo puede desaparecer en semanas — o peor, tu familia queda sin nada.</p>
+    <p>Un plan de retiro completo incluye dos elementos: <strong>crecimiento</strong> (lo que vimos en los capítulos anteriores) y <strong>protección</strong> (lo que tu familia necesita si algo te pasa a ti).</p>
+
+    <div class="section-title">Los seguros que todo latino necesita revisar</div>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-card-title">🏥 Seguro de Salud</div>
+        <ul>
+          <li>Una hospitalización sin seguro puede costar $50,000+</li>
+          <li>Si no tienes seguro del empleador, revisa Healthcare.gov</li>
+          <li>Un gasto médico es la causa #1 de quiebra en USA</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-title">🏠 Seguro de Vida a Término</div>
+        <ul>
+          <li>Cubre a tu familia si falleces durante los años productivos</li>
+          <li>Barato: $20-$40/mes para $500K de cobertura a los 35 años</li>
+          <li>Ideal para familias jóvenes con hipoteca o dependientes</li>
+        </ul>
+      </div>
+      <div class="compare-card highlight">
+        <div class="compare-card-badge">2 en 1</div>
+        <div class="compare-card-title">🌱 IUL — Seguro + Retiro</div>
+        <ul>
+          <li>Seguro de vida permanente (no expira nunca)</li>
+          <li>Valor en efectivo que crece vinculado al mercado sin riesgo de pérdida</li>
+          <li>Retiros libres de impuestos para el retiro</li>
+          <li>Protección + crecimiento en una sola póliza</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-title">⚠️ Seguro de Invalidez</div>
+        <ul>
+          <li>El 25% de los trabajadores de hoy quedarán inválidos antes de los 67</li>
+          <li>Social Security Disability es difícil de aprobar y tarda años</li>
+          <li>Muchos empleadores ofrecen cobertura corta — verifica la tuya</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-title">El IUL como herramienta de protección + retiro</div>
+    <p>El IUL (Indexed Universal Life) resuelve dos problemas a la vez. Te da <strong>seguro de vida permanente</strong> para proteger a tu familia hoy, y un <strong>vehículo de ahorro con crecimiento</strong> vinculado al mercado sin el riesgo de pérdida.</p>
+
+    <div class="box box-green">
+      <div class="box-title">🔄 Cómo funciona el IUL en tu retiro</div>
+      <ol>
+        <li><strong>Pagas primas mensuales.</strong> Una parte paga el seguro de vida; el resto va a tu valor en efectivo.</li>
+        <li><strong>Tu valor en efectivo crece.</strong> Vinculado al índice S&P 500, con piso del 0% (nunca pierdes) y techo del 10-12% en buenos años.</li>
+        <li><strong>Al retirarte, haces préstamos contra tu póliza.</strong> Estos préstamos no son ingresos gravables, así que retiras tu dinero sin pagar impuestos.</li>
+        <li><strong>Si falleces, tu familia recibe el beneficio de muerte libre de impuestos.</strong></li>
+      </ol>
+    </div>
+
+    <div class="box box-yellow">
+      <div class="box-title">⚠️ Lo que debes saber antes de abrir un IUL</div>
+      <ul>
+        <li>No es una cuenta de banco — es una póliza de seguro. Los primeros 2-3 años tienen costos de establecimiento.</li>
+        <li>El beneficio real se maximiza con aportes consistentes por 15-20+ años.</li>
+        <li>Trabaja con un asesor licenciado que te explique los números reales de tu caso.</li>
+        <li>No reemplaza al 401(k) si tu empleador hace match — eso es dinero gratis primero.</li>
+      </ul>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">✏️ Ejercicio 5 — Tu revisión de protección</div>
+      <div class="ws-row">
+        <div class="ws-label">¿Tengo seguro de vida activo hoy?</div>
+        <input class="ws-field" placeholder="Sí / No" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">¿Cuánto cubre? (monto total)</div>
+        <input class="ws-field" placeholder="$___" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">¿Es suficiente para mi familia por 10 años sin mi ingreso?</div>
+        <input class="ws-field" placeholder="Sí / No" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">¿Tengo interés en explorar el IUL?</div>
+        <input class="ws-field" placeholder="Sí / No / Quizás" type="text" />
+      </div>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaways-title">📌 Lo que te llevas del Capítulo 5</div>
+      <ul>
+        <li>Sin protección, tu plan de retiro puede desaparecer en un evento inesperado.</li>
+        <li>El IUL combina seguro permanente + crecimiento libre de impuestos en una sola herramienta.</li>
+        <li>La protección no cuesta — no tener protección es lo que cuesta.</li>
+        <li>Revisa tu seguro hoy: ¿tu familia sobreviviría 10 años sin tu ingreso?</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── BONUS ─── -->
+<div class="page">
+  <div class="page-inner">
+    <div class="chapter-header">
+      <div class="chapter-num">★ Bonus</div>
+      <h2>Tu Plan de Retiro en Una Hoja</h2>
+    </div>
+    <p class="chapter-intro">
+      Aquí tienes todo lo que necesitas para tu plan de retiro en un solo lugar. Llena cada sección con los números de los ejercicios anteriores. Cuando termines, tendrás un plan real — no solo un sueño.
+    </p>
+
+    <div class="exercise" style="background:#F0FDF4;">
+      <div class="exercise-title">📋 MI PLAN DE RETIRO — <span style="font-weight:500;">Fecha: _______________</span></div>
+
+      <p style="font-weight:800;color:#14532D;margin-bottom:8px;">AHORRAR</p>
+      <div class="ws-row">
+        <div class="ws-label">Meta de retiro total (Regla del 25)</div>
+        <input class="ws-field" placeholder="$___" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">Edad objetivo de retiro</div>
+        <input class="ws-field" placeholder="___ años" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">Aportación mensual automatizada</div>
+        <input class="ws-field" placeholder="$___/mes" type="text" />
+      </div>
+
+      <p style="font-weight:800;color:#14532D;margin:16px 0 8px;">INVERTIR</p>
+      <div class="ws-row">
+        <div class="ws-label">Herramienta principal (401k / Roth IRA / IUL)</div>
+        <input class="ws-field" placeholder="___________" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">Herramienta secundaria</div>
+        <input class="ws-field" placeholder="___________" type="text" />
+      </div>
+
+      <p style="font-weight:800;color:#14532D;margin:16px 0 8px;">PROTEGER</p>
+      <div class="ws-row">
+        <div class="ws-label">Seguro de vida activo (monto)</div>
+        <input class="ws-field" placeholder="$___" type="text" />
+      </div>
+      <div class="ws-row">
+        <div class="ws-label">¿Tengo IUL o planeo abrirlo?</div>
+        <input class="ws-field" placeholder="Sí / No" type="text" />
+      </div>
+
+      <p style="font-weight:800;color:#14532D;margin:16px 0 8px;">DISFRUTAR</p>
+      <div class="ws-row">
+        <div class="ws-label">¿Qué haré en el retiro? (mi visión)</div>
+        <input class="ws-field" placeholder="___________" type="text" />
+      </div>
+      <div class="ws-row" style="border-bottom:2px solid #16A34A;">
+        <div class="ws-label" style="font-weight:800;color:#14532D;">Mi próxima acción esta semana</div>
+        <input class="ws-field" style="font-weight:700;" placeholder="___________" type="text" />
+      </div>
+    </div>
+
+    <div class="bonus-box">
+      <div class="bonus-badge">BONUS</div>
+      <h3>Plantillas y Recursos Exclusivos</h3>
+      <p>Habla con un asesor y recibe acceso a estas herramientas adicionales para tu plan:</p>
+      <div class="bonus-items">
+        <div class="bonus-item">Calculadora IUL personalizada con tu nombre</div>
+        <div class="bonus-item">Hoja de proyección de retiro a 20/30 años</div>
+        <div class="bonus-item">Comparativa 401(k) vs IRA vs IUL para tu caso</div>
+        <div class="bonus-item">Checklist "Primeros 30 días de tu plan"</div>
+        <div class="bonus-item">Guía para hablar con tu empleador sobre el 401(k)</div>
+        <div class="bonus-item">Plantilla de presupuesto mensual para ahorradores</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CTA FINAL ─── -->
+<div class="page">
+  <div class="cta-page">
+    <div class="cta-tag">🎯 Tu siguiente paso</div>
+    <h2>Tienes el plan.<br>Ahora es hora de <span class="green">activarlo.</span></h2>
+    <p>Esta guía te dio el conocimiento. Un asesor te da los números exactos para tu situación. La consulta es gratuita y sin compromiso.</p>
+
+    <div class="cta-steps">
+      <div class="cta-step">
+        <div class="cta-step-num">1</div>
+        <p>Agenda una llamada de 15 minutos</p>
+      </div>
+      <div class="cta-step">
+        <div class="cta-step-num">2</div>
+        <p>Revisamos tu situación y tus metas</p>
+      </div>
+      <div class="cta-step">
+        <div class="cta-step-num">3</div>
+        <p>Te presento el plan exacto para ti</p>
+      </div>
+    </div>
+
+    <a href="https://bber.space/" class="cta-btn">
+      📅 Quiero mi consulta gratuita →
+    </a>
+
+    <p class="cta-disclaimer">Sin costo. Sin compromiso. En español. Solo para latinos en USA.</p>
+  </div>
+</div>
+
+<!-- ─── PRINT BAR ── -->
+<div class="print-bar">
+  <button onclick="window.print()">🖨️ Imprimir / PDF</button>
+  <a href="https://bber.space/">🏠 Volver al inicio</a>
+</div>
+
+</body>
+</html>
